@@ -48,17 +48,33 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
   const [muted, setMuted] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
+  const [awaitingUnlock, setAwaitingUnlock] = useState<boolean>(false);
   const [bars, setBars] = useState<number[]>(() => Array(18).fill(18));
+
+  const userPausedRef = useRef<boolean>(false);
+  const lastAutoUnlockAtRef = useRef<number>(0);
+  const volumeRef = useRef<number>(volume);
+  const mutedRef = useRef<boolean>(muted);
+  const duckRef = useRef<boolean>(voiceDucking);
+
+  volumeRef.current = volume;
+  mutedRef.current = muted;
+  duckRef.current = voiceDucking;
 
   const currentTrack = CLANNAD_TRACKS[trackIndex];
 
-  // 初始化 WebAudio 频谱分析器（首次用户点击播放时挂载）
+  // 初始化 WebAudio 频谱分析器（仅在确认用户手势上下文可激活 AudioContext 时按需挂载，避免拦截原生自动播放）
   const ensureAudioAnalyser = useCallback(() => {
     const audioEl = audioRef.current;
     if (!audioEl || analyserRef.current) return;
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') {
+        void ctx.resume();
+      }
       const source = ctx.createMediaElementSource(audioEl);
       const analyser = ctx.createAnalyser();
       analyser.fftSize = 64;
@@ -71,6 +87,96 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
       // 降级为节奏拟真动画，不影响音频原生播放
     }
   }, []);
+
+  // 柔和音量渐入辅助（避免刚打开网页时声音突兀炸响）
+  const fadeInAudioVolume = useCallback((audio: HTMLAudioElement) => {
+    if (mutedRef.current) {
+      audio.volume = 0;
+      return;
+    }
+    const target = duckRef.current ? volumeRef.current * 0.22 : volumeRef.current;
+    const startTime = performance.now();
+    const fadeDuration = 950;
+    audio.volume = Math.min(0.05, target);
+
+    const step = (now: number) => {
+      if (audio.paused || mutedRef.current) return;
+      const progress = Math.min(1, (now - startTime) / fadeDuration);
+      const latestTarget = duckRef.current ? volumeRef.current * 0.22 : volumeRef.current;
+      audio.volume = Math.max(0, Math.min(1, 0.05 + (latestTarget - 0.05) * progress));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, []);
+
+  // 打开网站默认自动播放引擎 + 浏览器冷启动策略拦截时的「任意首触零延迟唤醒」
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    let unlocked = false;
+
+    const cleanupUnlockListeners = () => {
+      window.removeEventListener('pointerdown', handleFirstGesture, true);
+      window.removeEventListener('touchstart', handleFirstGesture, true);
+      window.removeEventListener('keydown', handleFirstGesture, true);
+    };
+
+    const handleFirstGesture = () => {
+      if (unlocked || userPausedRef.current) {
+        cleanupUnlockListeners();
+        return;
+      }
+      const el = audioRef.current;
+      if (!el) return;
+
+      unlocked = true;
+      lastAutoUnlockAtRef.current = performance.now();
+      cleanupUnlockListeners();
+      ensureAudioAnalyser();
+
+      if (el.paused) {
+        void el
+          .play()
+          .then(() => {
+            setIsPlaying(true);
+            setAwaitingUnlock(false);
+            fadeInAudioVolume(el);
+          })
+          .catch(() => {
+            unlocked = false;
+          });
+      } else {
+        setIsPlaying(true);
+        setAwaitingUnlock(false);
+      }
+    };
+
+    // 1. 页面打开立即尝试直接有声自动播放
+    audio.volume = 0.06;
+    void audio
+      .play()
+      .then(() => {
+        unlocked = true;
+        setIsPlaying(true);
+        setAwaitingUnlock(false);
+        fadeInAudioVolume(audio);
+      })
+      .catch(() => {
+        // 2. 若首次冷启动被浏览器自动播放策略拦截，则进入待唤醒态：轻触页面任意位置即刻奏响
+        setIsPlaying(false);
+        setAwaitingUnlock(true);
+        window.addEventListener('pointerdown', handleFirstGesture, { capture: true, passive: true });
+        window.addEventListener('touchstart', handleFirstGesture, { capture: true, passive: true });
+        window.addEventListener('keydown', handleFirstGesture, { capture: true });
+      });
+
+    return () => {
+      cleanupUnlockListeners();
+    };
+  }, [ensureAudioAnalyser, fadeInAudioVolume]);
 
   // 驱动频谱跳动光柱
   useEffect(() => {
@@ -144,6 +250,8 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
     }
 
     if (audio.paused) {
+      userPausedRef.current = false;
+      setAwaitingUnlock(false);
       try {
         await audio.play();
         setIsPlaying(true);
@@ -151,6 +259,11 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
         setIsPlaying(false);
       }
     } else {
+      if (performance.now() - lastAutoUnlockAtRef.current < 400) {
+        return;
+      }
+      userPausedRef.current = true;
+      setAwaitingUnlock(false);
       audio.pause();
       setIsPlaying(false);
     }
@@ -198,8 +311,14 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
       <audio
         ref={audioRef}
         src={currentTrack.src}
-        preload="metadata"
+        preload="auto"
+        autoPlay
         loop={loopOne}
+        onPlay={() => {
+          setIsPlaying(true);
+          setAwaitingUnlock(false);
+        }}
+        onPause={() => setIsPlaying(false)}
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
         onEnded={() => {
@@ -258,7 +377,11 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
               </span>
             </div>
             <div className="text-[10px] text-pink-100/80 truncate">
-              {isPlaying ? activeLyric.zh : '4 首 CLANNAD 全长原曲可切换 · 点击展开'}
+              {isPlaying
+                ? activeLyric.zh
+                : awaitingUnlock
+                ? '轻触页面任意处即刻自动奏响原曲 ♪'
+                : '4 首 CLANNAD 全长原曲可切换 · 点击展开'}
             </div>
           </button>
 
