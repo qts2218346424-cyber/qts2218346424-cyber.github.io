@@ -110,6 +110,44 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           window.open(AUTHOR_PROFILE.antigravityReleases, '_blank', 'noopener,noreferrer'),
       },
       {
+        id: 'open-persona-demo',
+        group: '王牌旗舰直达',
+        title: '免注册一键试玩「星语恋庭 Persona Chat Studio」互动剧场',
+        subtitle: '官方在线站 star.claudexxb.online · 艾宾浩斯三层记忆与 2.5D 全息伴侣',
+        icon: Sparkles,
+        external: true,
+        action: () => window.open(AUTHOR_PROFILE.personaDemo, '_blank', 'noopener,noreferrer'),
+      },
+      {
+        id: 'open-quant-repo',
+        group: '王牌旗舰直达',
+        title: '访问「苍穹量枢 Aether Quant Studio」币安量化开源仓库',
+        subtitle: '五级安全沙盒 · System-One Jev 概率门禁 · 12 套阿尔法策略与习惯雷达',
+        icon: Zap,
+        external: true,
+        action: () => window.open(AUTHOR_PROFILE.quantRepo, '_blank', 'noopener,noreferrer'),
+      },
+      {
+        id: 'jump-persona-sandbox',
+        group: '站内全息导航',
+        title: '定位至站内「星语恋庭」心声流式互动剧场沙盒',
+        subtitle: '现场体验《樱坂坡道上的风》潜台词心声与 2.5D 全息伴侣戳一戳',
+        icon: Compass,
+        action: () => {
+          document.getElementById('persona')?.scrollIntoView({ behavior: 'smooth' });
+        },
+      },
+      {
+        id: 'jump-quant-sandbox',
+        group: '站内全息导航',
+        title: '定位至站内「苍穹量枢」五级风控沙盒与 70/30 进化雷达',
+        subtitle: '现场体验 Jev 概率门禁拦截、Kill Switch 与五维交易习惯雷达',
+        icon: Compass,
+        action: () => {
+          document.getElementById('quant')?.scrollIntoView({ behavior: 'smooth' });
+        },
+      },
+      {
         id: 'jump-coreforge-sandbox',
         group: '站内全息导航',
         title: '定位至站内「CoreForge 研核」实时热力星图沙盒',

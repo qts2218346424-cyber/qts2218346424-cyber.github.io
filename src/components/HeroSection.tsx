@@ -152,14 +152,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   {AUTHOR_PROFILE.handle}
                 </a>
                 ）。深爱《CLANNAD》里关于家族与小镇微光的羁绊，也执着于用{' '}
-                <span className="text-white font-semibold">Rust · Tauri v2 · React 19</span>{' '}
-                雕琢高定桌面与智能软件。欢迎探索我的两大核心开源代表作——
+                <span className="text-white font-semibold">Rust · Python · Node.js · React 19</span>{' '}
+                雕琢高定桌面与智能系统。欢迎探索我的四大核心开源代表作——
                 <a href="#coreforge" className="text-sky-200 font-semibold hover:underline mx-1">
-                  CoreForge 研核知识库
+                  CoreForge 研核
+                </a>
+                、
+                <a href="#antigravity" className="text-pink-200 font-semibold hover:underline mx-1">
+                  Antigravity 反重力汉化
+                </a>
+                、
+                <a href="#persona" className="text-rose-200 font-semibold hover:underline mx-1">
+                  星语恋庭互动剧场
                 </a>
                 与
-                <a href="#antigravity" className="text-pink-200 font-semibold hover:underline mx-1">
-                  Antigravity Studio 反重力汉化
+                <a href="#quant" className="text-amber-200 font-semibold hover:underline mx-1">
+                  苍穹量枢量化终端
                 </a>
                 。
               </p>
@@ -439,6 +447,137 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <Cpu className="h-3.5 w-3.5 text-pink-200" />
                 Tauri v2 · Rust
               </span>
+            </div>
+          </div>
+
+          {/* 旗舰导流卡 03：Persona Chat Studio · 星语恋庭 */}
+          <div className="clannad-crystal-panel group relative rounded-3xl p-5 sm:p-6 hover:border-pink-200/60 transition-all overflow-hidden">
+            <SakuraCornerFiligree position="top-right" />
+            <div className="relative z-10 flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <img
+                  src="./showcase/persona/persona-logo.png"
+                  alt="星语恋庭图标"
+                  className="h-12 w-12 rounded-2xl border border-pink-200/35 object-cover shadow-[0_0_20px_rgba(249,168,212,0.35)]"
+                />
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-rose-300/20 px-2.5 py-0.5 text-[11px] font-semibold text-pink-100 border border-pink-200/35 flex items-center gap-1">
+                      <DangoCharmIcon color="#fbcfe8" cheekColor="#f43f5e" className="h-3.5 w-3.5" />
+                      <span>核心旗舰 03 · 人设扮演游戏</span>
+                    </span>
+                    <span className="text-[11px] font-medium text-amber-200">1秒免注册开演</span>
+                  </div>
+                  <h2 className="font-clannad-serif mt-1 text-lg sm:text-xl font-bold text-white group-hover:text-pink-100 transition-colors">
+                    Persona Chat Studio · 星语恋庭互动剧场
+                  </h2>
+                </div>
+              </div>
+              <a
+                href="#persona"
+                className="clannad-pill-btn shrink-0 rounded-full px-3 py-1.5 text-xs font-medium text-pink-100 flex items-center gap-1"
+              >
+                <span>剧情推演</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+
+            <p className="relative z-10 mt-3 text-sm text-pink-50/90 leading-relaxed">
+              基于 <strong className="text-amber-100">0 第三方 npm 依赖（node:sqlite）</strong> 构建的番剧级 AI 互动剧场。内置{' '}
+              <strong className="text-pink-100">艾宾浩斯三层记忆</strong>、致敬《CLANNAD》樱坂剧本、2.5D 全息伴侣与声优语音克隆。
+            </p>
+
+            <div className="relative z-10 mt-4 pt-3.5 border-t border-pink-200/18 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={AUTHOR_PROFILE.personaDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-semibold text-pink-200 hover:text-white"
+                >
+                  <span>线上站 star.claudexxb.online</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+                <span className="text-white/25">·</span>
+                <a
+                  href={AUTHOR_PROFILE.personaApkRelease}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-amber-200 hover:text-white font-semibold"
+                >
+                  <span>Android 随身版 APK</span>
+                </a>
+                <span className="text-white/25">·</span>
+                <a
+                  href={AUTHOR_PROFILE.personaRepo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-pink-50/85 hover:text-white"
+                >
+                  <Github className="h-3.5 w-3.5" />
+                  <span>仓库</span>
+                </a>
+              </div>
+              <span className="font-mono text-[11px] text-pink-100/70">Node.js 22.5 · 2.5D</span>
+            </div>
+          </div>
+
+          {/* 旗舰导流卡 04：Aether Quant Studio · 苍穹量枢 */}
+          <div className="clannad-crystal-panel group relative rounded-3xl p-5 sm:p-6 hover:border-amber-200/60 transition-all overflow-hidden">
+            <SakuraCornerFiligree position="top-right" />
+            <div className="relative z-10 flex items-start justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="h-12 w-12 rounded-2xl border border-amber-200/40 bg-gradient-to-br from-amber-200/25 via-pink-300/20 to-sky-300/25 flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(253,230,138,0.3)]">
+                  <StarfishCharmIcon className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-full bg-amber-300/20 px-2.5 py-0.5 text-[11px] font-semibold text-amber-100 border border-amber-200/35 flex items-center gap-1">
+                      <HikariOrbIcon className="h-3 w-3" />
+                      <span>核心旗舰 04 · 币安量化终端</span>
+                    </span>
+                    <span className="text-[11px] font-medium text-sky-200">五级零风险沙盒</span>
+                  </div>
+                  <h2 className="font-clannad-serif mt-1 text-lg sm:text-xl font-bold text-white group-hover:text-amber-100 transition-colors">
+                    Aether Quant Studio · 苍穹量枢多策略实验室
+                  </h2>
+                </div>
+              </div>
+              <a
+                href="#quant"
+                className="clannad-pill-btn shrink-0 rounded-full px-3 py-1.5 text-xs font-medium text-amber-100 flex items-center gap-1"
+              >
+                <span>风控沙盒</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+
+            <p className="relative z-10 mt-3 text-sm text-pink-50/90 leading-relaxed">
+              融合卡尼曼 <strong className="text-amber-100">System-One (TypeSafe Jev) 概率门禁</strong>、
+              <strong className="text-sky-100">12 套机构级阿尔法策略</strong>、70/30 防过拟合自进化与 Obsidian 五维行为金融学习惯雷达。
+            </p>
+
+            <div className="relative z-10 mt-4 pt-3.5 border-t border-pink-200/18 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={AUTHOR_PROFILE.quantRepo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 font-semibold text-amber-200 hover:text-white"
+                >
+                  <Github className="h-3.5 w-3.5" />
+                  <span>开源仓库 aether-quant-studio</span>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+                <span className="text-white/25">·</span>
+                <a
+                  href="#quant"
+                  className="inline-flex items-center gap-1 text-pink-100 hover:text-white"
+                >
+                  <span>体验 Jev 门禁与习惯雷达</span>
+                </a>
+              </div>
+              <span className="font-mono text-[11px] text-pink-100/70">Python · FastAPI · 257 Tests</span>
             </div>
           </div>
         </div>

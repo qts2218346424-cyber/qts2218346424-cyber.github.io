@@ -64,11 +64,15 @@ export interface BlogPost {
   id: string;
   title: string;
   subtitle: string;
-  category: '桌面内核 & Rust' | '知识大脑 & 可视化' | '光学 UI 工程';
+  category: '桌面内核 & Rust' | '知识大脑 & 可视化' | '智能量化 & AI 剧场' | '光学 UI 工程';
   date: string;
   readTime: string;
   tags: string[];
-  relatedProject: 'CoreForge 研核' | 'Antigravity Studio';
+  relatedProject:
+    | 'CoreForge 研核'
+    | 'Antigravity Studio'
+    | 'Persona Chat Studio · 星语恋庭'
+    | 'Aether Quant Studio · 苍穹量枢';
   relatedUrl: string;
   summary: string;
   sections: {
@@ -98,6 +102,11 @@ export const AUTHOR_PROFILE = {
   coreforgeRepo: 'https://github.com/qts2218346424-cyber/obsidian-knowledge-viz',
   antigravityRepo: 'https://github.com/qts2218346424-cyber/antigravity-zh-cn',
   antigravityReleases: 'https://github.com/qts2218346424-cyber/antigravity-zh-cn/releases',
+  personaSite: 'https://star.claudexxb.online/',
+  personaDemo: 'https://star.claudexxb.online/?demo=1',
+  personaRepo: 'https://github.com/qts2218346424-cyber/persona-chat-studio',
+  personaApkRelease: 'https://github.com/qts2218346424-cyber/persona-chat-studio/releases/latest',
+  quantRepo: 'https://github.com/qts2218346424-cyber/aether-quant-studio',
 };
 
 export const INITIAL_KNOWLEDGE_NODES: KnowledgeNode[] = [
@@ -401,6 +410,51 @@ export const PROJECTS_DIRECTORY: ProjectDirectoryItem[] = [
     cloneCmd: 'git clone https://github.com/qts2218346424-cyber/antigravity-zh-cn.git',
   },
   {
+    id: 'persona-chat-studio',
+    name: 'Persona Chat Studio · 星语恋庭',
+    codename: 'persona-chat-studio',
+    flagship: true,
+    accentColor: '#f9a8d4',
+    summary:
+      '融合「仿 DeepSeek 原生流式生产力工作台」与「番剧级沉浸式 AI 角色扮演剧场」的全栈互动平台。基于 0 第三方 npm 依赖（Node.js 22.5 原生 SQLite）构建，集艾宾浩斯三层记忆、四大番剧世界观、2.5D 全息伴侣与声优语音克隆于一体。',
+    highlights: [
+      '三层上下文 + 艾宾浩斯遗忘曲线引擎 R=exp(-Δt/S)，彻底告别长对话失忆与人设崩塌',
+      '内置《樱坂坡道上的风（致敬 CLANNAD）》等四大独立世界观剧本、AI 改剧本工坊与玩家共创广场',
+      '2.5D 破框全息视差伴侣 + 5 大声优声线克隆，支持 1 秒免注册进入独立访客剧场及 Android APK',
+    ],
+    techStack: ['Node.js 22.5+', 'node:sqlite 零依赖', 'Canvas 2.5D', 'Qwen3-TTS', 'SSE 思考流', 'Android APK'],
+    primaryUrl: 'https://star.claudexxb.online/?demo=1',
+    primaryLabel: '免注册一键开演 star.claudexxb.online',
+    repoUrl: 'https://github.com/qts2218346424-cyber/persona-chat-studio',
+    extraLinks: [
+      { label: '官方云端站首页', url: 'https://star.claudexxb.online/' },
+      { label: '下载 Android 随身版 APK', url: 'https://github.com/qts2218346424-cyber/persona-chat-studio/releases/latest' },
+    ],
+    cloneCmd: 'git clone https://github.com/qts2218346424-cyber/persona-chat-studio.git',
+  },
+  {
+    id: 'aether-quant-studio',
+    name: 'Aether Quant Studio · 苍穹量枢',
+    codename: 'aether-quant-studio',
+    flagship: true,
+    accentColor: '#fcd34d',
+    summary:
+      '面向个人极客与量化研究者的开源多策略实验平台与币安永续合约智能看盘终端。出厂默认锁定零风险只读/模拟沙盒，融合卡尼曼快慢双系统（System-One TypeSafe Jev 概率门禁）、12 套阿尔法策略、70/30 防过拟合自进化与 Obsidian 交易习惯雷达。',
+    highlights: [
+      'L1~L5 五级渐进安全沙盒 + 常驻一键急停 Kill Switch、双向对账与六重执行层硬风控',
+      'System-One 毫秒级非生成式类型化概率校准 + 多模型异步投委会，杜绝大模型幻觉裸奔下单',
+      '12 套机构级策略（SMC 订单块/ICT 银弹/海龟突破等）+ 70/30 样本内外盲测自进化 + 257 项单测通过',
+    ],
+    techStack: ['Python 3.10+', 'FastAPI', 'WebSocket 1s流', 'TypeSafe Jev', 'ECharts 多图层', 'Obsidian MOC', 'PyQt5 托盘'],
+    primaryUrl: 'https://github.com/qts2218346424-cyber/aether-quant-studio',
+    primaryLabel: '探索苍穹量枢开源仓库',
+    repoUrl: 'https://github.com/qts2218346424-cyber/aether-quant-studio',
+    extraLinks: [
+      { label: '12 套阿尔法策略源码', url: 'https://github.com/qts2218346424-cyber/aether-quant-studio/tree/main/src/strategies' },
+    ],
+    cloneCmd: 'git clone https://github.com/qts2218346424-cyber/aether-quant-studio.git',
+  },
+  {
     id: 'coreforge-showroom',
     name: 'CoreForge 实机全息宣传展厅',
     codename: 'obsidian-knowledge-viz-pages',
@@ -434,22 +488,23 @@ export const TECH_ARSENAL_ROW_1 = [
   'Rust 1.85+ 原生系统编程',
   'Tauri v2 跨端微内核',
   'React 19 并发渲染架构',
+  'Python 3.10+ & FastAPI 量化内核',
+  'Node.js 22.5 node:sqlite 零依赖全栈',
   'TypeScript 6 严苛类型体操',
   'Electron 42 深度定制与 ASAR 逆向',
   'Obsidian Markdown 双链 AST 引擎',
-  'Vite 8 极速模块联邦',
   'Tokio 异步守护哨兵',
 ];
 
 export const TECH_ARSENAL_ROW_2 = [
+  'TypeSafe Jev (System-One) 概率风控门禁',
+  '艾宾浩斯三层记忆遗忘曲线引擎',
+  '70/30 IS/OOS 防过拟合策略进化',
+  '2.5D 全息视差伴侣 & Qwen3-TTS 语音克隆',
   'Express 5 & SSE 零缓冲思考流',
   'KaTeX 出版级微积分矩阵排版',
-  'D3.js & xyflow 知识星图拓扑',
   'Color DNA 物理表面光学材质编译器',
-  'Minisign 数字签名 OTA 热更新',
-  'WebAudio 程序化合成声学引擎',
   'Tailwind CSS v4 & OKLCH 色彩空间',
-  'Claude / Codex 本机多智能体沙箱桥接',
 ];
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -604,6 +659,81 @@ export const BLOG_POSTS: BlogPost[] = [
         heading: '二、坚守合成器线程（Compositor-Only）与现代 Web 原语',
         paragraphs: [
           '炫技绝不意味着牺牲性能。无论是滚动进度条采用的 CSS Scroll-Driven Animations (animation-timeline: scroll())，还是聚光灯卡片采用的 CSS 自定义属性径向遮罩，均避免了昂贵的 Layout 重排，确保在高刷屏上稳定跑满丝滑帧率。',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'persona-zero-dep-ebbinghaus',
+    title: '0 第三方 npm 依赖的全栈浪漫：用 Node.js 原生 SQLite 与遗忘曲线构筑「星语恋庭」',
+    subtitle: '揭秘三层上下文记忆引擎 R = exp(-Δt/S)、剧本两级防串戏隔离与 2.5D 全息视差伴侣架构',
+    category: '智能量化 & AI 剧场',
+    date: '2026-11-16',
+    readTime: '10 分钟深度阅读',
+    tags: ['星语恋庭', 'node:sqlite', '艾宾浩斯记忆', '2.5D 伴侣'],
+    relatedProject: 'Persona Chat Studio · 星语恋庭',
+    relatedUrl: 'https://star.claudexxb.online/?demo=1',
+    summary:
+      '大多数 AI 角色扮演应用聊过几十轮便陷入失忆崩人设与跨剧本串戏，且动辄背负数百 MB 脆弱依赖。本文复盘星语恋庭如何仅凭 Node.js 22.5 原生内置模块打造出番剧级多模态互动剧场。',
+    sections: [
+      {
+        heading: '一、三层记忆架构与艾宾浩斯动态唤醒公式',
+        paragraphs: [
+          '为彻底根治长程对话中的 OOC（人设崩塌），我们将上下文划分为「底层焊死核心人设层」「中层滑动摘要窗口」与「顶层艾宾浩斯长期世界书」。每条共同经历按记忆保持率 R = exp(-Δt / S) 动态计算显著度，一旦在对话中被再次提及即刻触发强度 S 翻倍巩固，并在夜晚触发「梦境整理」写入角色私密手札。',
+          '同时采用「世界观剧本容器 → 专属登场群像 → 四幕剧情推进」两级物理隔离，确保在《樱坂坡道上的风》演剧社与《第八月三十一日的观测站》之间切换时绝不混排串戏。',
+        ],
+        codeSnippet: {
+          lang: 'javascript',
+          filename: 'server/memoryEngine.js',
+          code: `export function computeMemoryRetention(entry, nowMs = Date.now()) {
+  const elapsedHours = Math.max(0, (nowMs - entry.lastRecalledAt) / 3_600_000);
+  const stability = entry.baseStrength * Math.pow(1.65, entry.recallCount);
+  const retention = Math.exp(-elapsedHours / stability);
+  return retention * (0.6 + 0.4 * entry.emotionalWeight);
+}`,
+        },
+      },
+      {
+        heading: '二、纯粹到极致的 0 npm 依赖服务端与双生界面',
+        paragraphs: [
+          '服务端完全基于 Node.js >= 22.5.0 原生内置的 node:http、node:sqlite 与 node:crypto 实现多租户物理隔离沙盒，克隆仓库无需安装任何第三方包即可秒级启动；前端同一账号更支持在「2.5D 全息伴侣恋庭剧场」与「极简仿 DeepSeek 纯净生产力工作台」之间一键无损切换。',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'aether-quant-dual-system',
+    title: '拒绝大模型幻觉裸奔下单：「苍穹量枢」卡尼曼快慢双系统与五级风控沙盒实践',
+    subtitle: '深入解析 System-One (TypeSafe Jev) 毫秒级概率校准、70/30 样本外防过拟合自进化与 Obsidian 习惯雷达',
+    category: '智能量化 & AI 剧场',
+    date: '2026-11-17',
+    readTime: '12 分钟深度阅读',
+    tags: ['苍穹量枢', 'FastAPI', 'TypeSafe Jev', '量化风控'],
+    relatedProject: 'Aether Quant Studio · 苍穹量枢',
+    relatedUrl: 'https://github.com/qts2218346424-cyber/aether-quant-studio',
+    summary:
+      '直接让生成式 LLM 裸调合约下单接口往往会被价格幻觉与高延迟反噬。本文拆解苍穹量枢如何用五级渐进沙盒、四阶审查漏斗与行为金融学雷达打造安全可控的个人量化实验室。',
+    sections: [
+      {
+        heading: '一、System-One 直觉门禁与六重执行层硬风控',
+        paragraphs: [
+          '在 Aether Quant Studio 中，任何策略信号在触达撮合层前必须先经过 TypeSafe Jev (System-One) 的毫秒级非生成式类型化概率校准，评估当前盘口聪明钱结构与近 7 日交易者违纪倾向；一旦风险越界立即一票否决并写入决策现场黑匣子。',
+          '底层 RiskManager 强制执行单笔 ATR 动态止损定仓、账户总名义敞口上限、日内净亏损硬熔断、WebSocket 行情新鲜度熔断与连亏强制冷静期，出厂默认锁定 L1 READONLY 物理禁发单态。',
+        ],
+        codeSnippet: {
+          lang: 'python',
+          filename: 'src/core/risk_manager.py',
+          code: `def calc_safe_order_qty(wallet_equity: float, entry_price: float, stop_price: float, cfg: RiskConfig) -> float:
+    margin_cap_qty = (wallet_equity * cfg.pos_margin_ratio * cfg.max_leverage) / entry_price
+    stop_dist = max(abs(entry_price - stop_price), entry_price * 0.0015)
+    loss_cap_qty = (wallet_equity * cfg.max_single_loss_ratio) / stop_dist
+    return round_step_size(min(margin_cap_qty, loss_cap_qty), cfg.qty_step)`,
+        },
+      },
+      {
+        heading: '二、70/30 样本内外盲测进化与 Obsidian 行为习惯编译',
+        paragraphs: [
+          '内置的 12 套机构级策略（SMC 订单块、ICT 银弹 FVG、威科夫弹簧等）严格按时间序列切分 70% 样本内寻优与 30% 样本外盲测，未通过 OOS 净值与回撤门禁的参数一律拒绝热加载；同时通过 Karpathy 范式编译器将交割单自动映射为本地 Obsidian 五维交易习惯雷达，用工程手段约束人性弱点。',
         ],
       },
     ],

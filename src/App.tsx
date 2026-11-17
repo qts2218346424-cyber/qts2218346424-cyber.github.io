@@ -3,6 +3,8 @@ import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { CoreForgeShowcase } from './components/CoreForgeShowcase';
 import { AntigravityShowcase } from './components/AntigravityShowcase';
+import { PersonaShowcase } from './components/PersonaShowcase';
+import { AetherQuantShowcase } from './components/AetherQuantShowcase';
 import { ClannadSanctuary } from './components/ClannadSanctuary';
 import { ClannadMusicPlayer } from './components/ClannadMusicPlayer';
 import { ClannadBackdrop, ClannadWorldTheme } from './components/ClannadBackdrop';
@@ -59,9 +61,9 @@ export const App: React.FC = () => {
     const updateSceneByScroll = () => {
       const y = window.scrollY;
       const vh = Math.max(700, window.innerHeight);
-      if (y < vh * 0.85) {
+      if (y < vh * 1.35) {
         setActiveScrollScene('sakura');
-      } else if (y < vh * 2.05) {
+      } else if (y < vh * 3.4) {
         setActiveScrollScene('sunflower');
       } else {
         setActiveScrollScene('orbs');
@@ -135,6 +137,16 @@ export const App: React.FC = () => {
 
         {/* 王牌旗舰 02：Antigravity Studio 反重力汉化与光学换肤实时体验舱 */}
         <AntigravityShowcase />
+
+        <DangoSectionDivider />
+
+        {/* 王牌旗舰 03：Persona Chat Studio 星语恋庭人设扮演全息互动剧场 */}
+        <PersonaShowcase />
+
+        <DangoSectionDivider />
+
+        {/* 王牌旗舰 04：Aether Quant Studio 苍穹量枢双系统风控与量化沙盒 */}
+        <AetherQuantShowcase />
 
         <DangoSectionDivider />
 

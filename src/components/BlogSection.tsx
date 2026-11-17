@@ -13,7 +13,13 @@ import {
 import { BLOG_POSTS, BlogPost } from '../data/siteData';
 import { attachDialogEnhancements, closeDialogSmoothly } from '../utils/dialogHelper';
 
-const CATEGORIES = ['全部文章', '桌面内核 & Rust', '知识大脑 & 可视化', '光学 UI 工程'] as const;
+const CATEGORIES = [
+  '全部文章',
+  '桌面内核 & Rust',
+  '知识大脑 & 可视化',
+  '智能量化 & AI 剧场',
+  '光学 UI 工程',
+] as const;
 
 export const BlogSection: React.FC<{
   externalPostToOpen: BlogPost | null;
@@ -74,8 +80,10 @@ export const BlogSection: React.FC<{
               深度技术专栏 <span className="text-aurora-gradient">&amp; 源码实战复盘</span>
             </h2>
             <p className="mt-3 max-w-2xl text-pink-50/85 text-base">
-              不写空洞的概念堆砌，只记录在打磨 <strong className="text-white">CoreForge 研核</strong> 与{' '}
-              <strong className="text-white">Antigravity Studio</strong> 过程中跨越过的真实系统级深水区。
+              不写空洞的概念堆砌，只记录在打磨 <strong className="text-white">CoreForge 研核</strong>、
+              <strong className="text-white">Antigravity Studio</strong>、
+              <strong className="text-white">星语恋庭</strong> 与{' '}
+              <strong className="text-white">苍穹量枢</strong> 过程中跨越过的真实系统级深水区。
             </p>
           </div>
 

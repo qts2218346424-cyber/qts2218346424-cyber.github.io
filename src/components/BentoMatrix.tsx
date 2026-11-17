@@ -34,7 +34,7 @@ const INITIAL_LOGS: TerminalLine[] = [
   {
     id: 2,
     type: 'output',
-    text: '[OK] CoreForge 研核 (https://claudexxb.online) — 22+ 交互实验室在线，Obsidian 双向同步就绪',
+    text: '[OK] 四大旗舰就绪：CoreForge 研核 | Antigravity 汉化 | 星语恋庭 (star.claudexxb.online) | 苍穹量枢量化终端',
   },
   {
     id: 3,
@@ -85,20 +85,27 @@ export const BentoMatrix: React.FC<BentoMatrixProps> = ({ motionPaused }) => {
       reply = `${AUTHOR_PROFILE.name} (${AUTHOR_PROFILE.handle}) — 独立全栈架构师 / Rust & React 造物极客`;
     } else if (cmd === 'projects') {
       reply =
-        '1) CoreForge 研核 -> https://claudexxb.online  |  2) Antigravity Studio -> github.com/qts2218346424-cyber/antigravity-zh-cn';
+        '1) CoreForge 研核 (claudexxb.online) | 2) Antigravity Studio | 3) 星语恋庭 (star.claudexxb.online) | 4) 苍穹量枢 (aether-quant-studio)';
     } else if (cmd === 'open coreforge') {
       reply = '正在新标签页为你开启 CoreForge 研核线上官网 https://claudexxb.online ...';
       window.open(AUTHOR_PROFILE.coreforgeSite, '_blank', 'noopener,noreferrer');
     } else if (cmd === 'open antigravity') {
       reply = '正在新标签页为你开启 Antigravity Studio 开源仓库 ...';
       window.open(AUTHOR_PROFILE.antigravityRepo, '_blank', 'noopener,noreferrer');
+    } else if (cmd === 'open persona') {
+      reply = '正在新标签页为你开启星语恋庭免注册互动剧场 https://star.claudexxb.online/?demo=1 ...';
+      window.open(AUTHOR_PROFILE.personaDemo, '_blank', 'noopener,noreferrer');
+    } else if (cmd === 'open quant') {
+      reply = '正在新标签页为你开启苍穹量枢币安量化开源仓库 ...';
+      window.open(AUTHOR_PROFILE.quantRepo, '_blank', 'noopener,noreferrer');
     } else if (cmd === 'stack') {
       reply =
-        'Rust · Tauri v2 · React 19 · TypeScript 6 · Vite 8 · Express 5 · Electron 42 · Obsidian AST · KaTeX';
+        'Rust · Tauri v2 · Python FastAPI · Node.js 22.5 SQLite · React 19 · TypeScript 6 · TypeSafe Jev · Obsidian AST';
     } else if (cmd === 'contact') {
       reply = `QQ: ${AUTHOR_PROFILE.qq} | B站 UID: ${AUTHOR_PROFILE.bilibiliUid} | 邮箱: ${AUTHOR_PROFILE.email}`;
     } else if (cmd === 'help') {
-      reply = '可用指令: whoami | projects | contact | stack | open coreforge | open antigravity | clear';
+      reply =
+        '可用指令: whoami | contact | projects | stack | open coreforge | open antigravity | open persona | open quant | clear';
     } else {
       reply = `未知指令 "${raw}"。输入 help 查看支持的极客快捷命令。`;
     }
@@ -347,8 +354,9 @@ export const BentoMatrix: React.FC<BentoMatrixProps> = ({ motionPaused }) => {
                 'whoami',
                 'contact',
                 'projects',
-                'stack',
                 'open coreforge',
+                'open persona',
+                'open quant',
                 'open antigravity',
                 'clear',
               ].map((preset) => (

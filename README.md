@@ -1,6 +1,6 @@
 # 🌸 空の光 | 光坂春樱与星海造物空间 · 双旗舰交互博客站
 
-> 基于 **React 19 + TypeScript + Vite + Tailwind CSS v4** 构建的高定深空全息极客个人站。重点展示与引导 **CoreForge 研核（知识库与智能研学系统）** 与 **Antigravity Studio（反重力全能中文控制中心与光学美学引擎）** 两大王牌开源项目。
+> 基于 **React 19 + TypeScript + Vite + Tailwind CSS v4** 构建的光坂典藏级（Hikarizaka Haute）个人博客与造物空间。在京都动画《CLANNAD》四季画境与液态水晶玻璃界面之上，沉浸式呈现 **CoreForge 研核（知识库系统）**、**Antigravity Studio（反重力汉化中心）**、**Persona Chat Studio · 星语恋庭（番剧互动剧场）** 与 **Aether Quant Studio · 苍穹量枢（币安永续量化终端）** 四大核心开源旗舰。
 
 ---
 

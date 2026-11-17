@@ -1,0 +1,277 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-label="Aether Quant Studio 模块化量化终端界面预览">
+  <defs>
+    <linearGradient id="termBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#070A12"/>
+      <stop offset="100%" stop-color="#0B101E"/>
+    </linearGradient>
+    <linearGradient id="headerBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0D1322"/>
+    </linearGradient>
+    <linearGradient id="cmdBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#131C31" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="logoIcon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Window Frame -->
+  <rect width="1280" height="720" rx="16" fill="url(#termBg)" stroke="#1E293B" stroke-width="2"/>
+
+  <!-- 1. Top Cockpit Header -->
+  <rect x="2" y="2" width="1276" height="52" rx="14" fill="url(#headerBg)"/>
+  <line x1="0" y1="54" x2="1280" y2="54" stroke="#1E293B" stroke-width="1"/>
+
+  <!-- Brand Emblem -->
+  <rect x="18" y="15" width="24" height="24" rx="6" fill="url(#logoIcon)"/>
+  <polygon points="30,19 38,27 30,35 22,27" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+  <text x="50" y="32" fill="#F8FAFC" font-family="'Inter', sans-serif" font-size="14" font-weight="800" letter-spacing="1">AETHER QUANT</text>
+  <rect x="172" y="18" width="46" height="18" rx="4" fill="#1E1B4B" stroke="#6366F1" stroke-opacity="0.5"/>
+  <text x="179" y="30" fill="#A5B4FC" font-family="'JetBrains Mono', monospace" font-size="9.5" font-weight="700">STUDIO</text>
+
+  <!-- WS Status & Sandbox Tier -->
+  <rect x="230" y="16" width="84" height="22" rx="11" fill="#064E3B" fill-opacity="0.35" stroke="#10B981" stroke-opacity="0.4"/>
+  <circle cx="244" cy="27" r="4" fill="#10B981"/>
+  <text x="254" y="31" fill="#34D399" font-family="'PingFang SC', sans-serif" font-size="10.5" font-weight="600">WS 实时</text>
+
+  <rect x="322" y="16" width="136" height="22" rx="11" fill="#1E293B" stroke="#38BDF8" stroke-opacity="0.4"/>
+  <text x="334" y="31" fill="#7DD3FC" font-family="'JetBrains Mono', 'PingFang SC', monospace" font-size="10.5" font-weight="600">📝 模拟实盘 PAPER</text>
+
+  <!-- Center Control Capsule (Kill Switch + Breaker + Jev + Auto) -->
+  <rect x="486" y="12" width="410" height="30" rx="15" fill="#090D16" stroke="#334155"/>
+  <rect x="492" y="15" width="84" height="24" rx="12" fill="#4C0519" stroke="#F43F5E" stroke-opacity="0.6"/>
+  <text x="504" y="31" fill="#FDA4AF" font-family="'PingFang SC', sans-serif" font-size="10.5" font-weight="700">🚨 紧急急停</text>
+
+  <rect x="582" y="15" width="88" height="24" rx="12" fill="#064E3B" fill-opacity="0.45" stroke="#10B981" stroke-opacity="0.45"/>
+  <text x="595" y="31" fill="#6EE7B7" font-family="'PingFang SC', sans-serif" font-size="10.5" font-weight="600">● 熔断: 安全</text>
+
+  <rect x="676" y="15" width="106" height="24" rx="12" fill="#0C4A6E" fill-opacity="0.55" stroke="#38BDF8" stroke-opacity="0.55"/>
+  <text x="688" y="31" fill="#38BDF8" font-family="'PingFang SC', sans-serif" font-size="10.5" font-weight="700">🧠 Jev 风控: 开</text>
+
+  <rect x="788" y="15" width="102" height="24" rx="12" fill="#064E3B" fill-opacity="0.55" stroke="#10B981" stroke-opacity="0.55"/>
+  <text x="802" y="31" fill="#34D399" font-family="'PingFang SC', sans-serif" font-size="10.5" font-weight="700">自动交易: 开</text>
+
+  <!-- Right Controls -->
+  <rect x="920" y="15" width="118" height="24" rx="6" fill="#1E293B" stroke="#38BDF8" stroke-opacity="0.45"/>
+  <text x="930" y="31" fill="#E2E8F0" font-family="'PingFang SC', sans-serif" font-size="10.5" font-weight="600">🔍 快捷指令</text>
+  <rect x="996" y="18" width="36" height="18" rx="4" fill="#0F172A" stroke="#475569"/>
+  <text x="1001" y="30" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="9">Ctrl K</text>
+
+  <rect x="1046" y="15" width="76" height="24" rx="6" fill="#1E1B4B" stroke="#8B5CF6" stroke-opacity="0.5"/>
+  <text x="1056" y="31" fill="#C4B5FD" font-family="'PingFang SC', sans-serif" font-size="10.5" font-weight="600">📓 知识库</text>
+
+  <rect x="1130" y="15" width="60" height="24" rx="6" fill="#1E293B" stroke="#334155"/>
+  <text x="1141" y="31" fill="#CBD5E1" font-family="'PingFang SC', sans-serif" font-size="10.5">☀️ 主题</text>
+
+  <rect x="1198" y="15" width="66" height="24" rx="6" fill="#1E293B" stroke="#334155"/>
+  <text x="1208" y="31" fill="#CBD5E1" font-family="'PingFang SC', sans-serif" font-size="10.5">⚙ 设置</text>
+
+  <!-- 2. Account Telemetry Strip -->
+  <rect x="0" y="55" width="1280" height="36" fill="#0B1120"/>
+  <line x1="0" y1="91" x2="1280" y2="91" stroke="#1E293B"/>
+  <g font-family="'JetBrains Mono', 'PingFang SC', monospace" font-size="11.5" transform="translate(20, 77)">
+    <text x="0" y="0" fill="#64748B">账户权益</text>
+    <text x="58" y="0" fill="#F8FAFC" font-weight="700">12,480.65 USDT</text>
+    <text x="190" y="0" fill="#64748B">未实现盈亏</text>
+    <text x="260" y="0" fill="#10B981" font-weight="700">+342.80 USDT (+2.75%)</text>
+    <text x="440" y="0" fill="#64748B">可用保证金</text>
+    <text x="510" y="0" fill="#CBD5E1" font-weight="600">9,812.40 USDT</text>
+    <text x="640" y="0" fill="#64748B">活跃持仓</text>
+    <text x="698" y="0" fill="#38BDF8" font-weight="700">2 / 3 仓</text>
+    <text x="780" y="0" fill="#64748B">杠杆上限</text>
+    <text x="838" y="0" fill="#F59E0B" font-weight="700">6x ISOLATED</text>
+    <text x="955" y="0" fill="#64748B">资金费率</text>
+    <text x="1012" y="0" fill="#10B981">+0.0100%</text>
+  </g>
+
+  <!-- 3. Six-Card Metric Strip -->
+  <g transform="translate(14, 100)" font-family="'PingFang SC', 'JetBrains Mono', sans-serif">
+    <g transform="translate(0, 0)">
+      <rect width="202" height="58" rx="8" fill="#111A2E" stroke="#38BDF8" stroke-opacity="0.4"/>
+      <line x1="16" y1="1" x2="186" y2="1" stroke="#38BDF8" stroke-width="2"/>
+      <text x="14" y="20" fill="#64748B" font-size="10">当前激活系统</text>
+      <text x="14" y="42" fill="#F8FAFC" font-size="14" font-weight="700">SMC 聪明钱 + 趋势共振</text>
+    </g>
+    <g transform="translate(210, 0)">
+      <rect width="202" height="58" rx="8" fill="#0F172A" stroke="#1E293B"/>
+      <text x="14" y="20" fill="#64748B" font-size="10">市场微观状态</text>
+      <text x="14" y="42" fill="#34D399" font-size="14" font-weight="700">多头趋势扩张 (1H 共振)</text>
+    </g>
+    <g transform="translate(420, 0)">
+      <rect width="202" height="58" rx="8" fill="#0F172A" stroke="#1E293B"/>
+      <text x="14" y="20" fill="#64748B" font-size="10">多因子信号评分</text>
+      <text x="14" y="42" fill="#38BDF8" font-size="15" font-weight="800">87.4 / 100</text>
+    </g>
+    <g transform="translate(630, 0)">
+      <rect width="202" height="58" rx="8" fill="#0F172A" stroke="#1E293B"/>
+      <text x="14" y="20" fill="#64748B" font-size="10">日内风控预算使用率</text>
+      <text x="14" y="42" fill="#10B981" font-size="15" font-weight="700">8.2% (安全冗余 91.8%)</text>
+    </g>
+    <g transform="translate(840, 0)">
+      <rect width="202" height="58" rx="8" fill="#0F172A" stroke="#1E293B"/>
+      <text x="14" y="20" fill="#64748B" font-size="10">执行网关与保护单</text>
+      <text x="14" y="42" fill="#A78BFA" font-size="14" font-weight="700">Maker 优先 · 止损在途</text>
+    </g>
+    <g transform="translate(1050, 0)">
+      <rect width="202" height="58" rx="8" fill="#0F172A" stroke="#1E293B"/>
+      <text x="14" y="20" fill="#64748B" font-size="10">行情新鲜度 / API 延迟</text>
+      <text x="14" y="42" fill="#34D399" font-size="15" font-weight="700">0.2s · 19 ms</text>
+    </g>
+  </g>
+
+  <!-- 4. Main Chart Area (Left) -->
+  <rect x="14" y="168" width="918" height="388" rx="10" fill="#0B1120" stroke="#1E293B"/>
+
+  <!-- Chart Toolbar -->
+  <rect x="15" y="169" width="916" height="34" rx="9" fill="#0F172A"/>
+  <g transform="translate(28, 190)" font-family="'JetBrains Mono', 'PingFang SC', sans-serif" font-size="11">
+    <text x="0" y="0" fill="#F8FAFC" font-weight="700">BTCUSDT.P</text>
+    <text x="86" y="0" fill="#64748B">1m  5m</text>
+    <rect x="136" y="-13" width="34" height="19" rx="4" fill="#1D4ED8"/>
+    <text x="142" y="0" fill="#FFFFFF" font-weight="700">15m</text>
+    <text x="180" y="0" fill="#64748B">1h  4h  1d</text>
+    <text x="275" y="0" fill="#38BDF8">☑ 开仓线  ☑ 止损/止盈  ☑ EMA9/21  ☑ BOLL  ☑ 密集成交区</text>
+    <text x="760" y="0" fill="#10B981" font-size="13" font-weight="800">98,420.50 ▲ +3.84%</text>
+  </g>
+
+  <!-- Chart Grid & POC Volume Zone -->
+  <g stroke="#1E293B" stroke-width="1" stroke-dasharray="3,3">
+    <line x1="56" y1="240" x2="860" y2="240"/>
+    <line x1="56" y1="300" x2="860" y2="300"/>
+    <line x1="56" y1="360" x2="860" y2="360"/>
+    <line x1="56" y1="420" x2="860" y2="420"/>
+    <line x1="56" y1="480" x2="860" y2="480"/>
+  </g>
+
+  <!-- Dense POC Liquidity Zone -->
+  <rect x="56" y="348" width="804" height="34" fill="#6366F1" fill-opacity="0.09"/>
+  <text x="64" y="368" fill="#818CF8" font-family="'PingFang SC', sans-serif" font-size="10">POC 高价值筹码密集区 (96,850 ~ 97,220)</text>
+
+  <!-- Take Profit / Entry / Stop Loss Horizontal Lines -->
+  <line x1="56" y1="232" x2="860" y2="232" stroke="#10B981" stroke-width="1.2" stroke-dasharray="6,4"/>
+  <rect x="862" y="222" width="64" height="18" rx="3" fill="#065F46"/>
+  <text x="867" y="234" fill="#A7F3D0" font-family="'JetBrains Mono', monospace" font-size="9.5">TP 100.8k</text>
+
+  <line x1="56" y1="332" x2="860" y2="332" stroke="#38BDF8" stroke-width="1.4"/>
+  <rect x="862" y="322" width="64" height="18" rx="3" fill="#075985"/>
+  <text x="867" y="334" fill="#BAE6FD" font-family="'JetBrains Mono', monospace" font-size="9.5">IN 97.4k</text>
+
+  <line x1="56" y1="412" x2="860" y2="412" stroke="#F43F5E" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <rect x="862" y="402" width="64" height="18" rx="3" fill="#881337"/>
+  <text x="867" y="414" fill="#FECDD3" font-family="'JetBrains Mono', monospace" font-size="9.5">SL 95.9k</text>
+
+  <!-- Candlesticks Sequence -->
+  <g>
+    <line x1="95" y1="425" x2="95" y2="465" stroke="#F43F5E" stroke-width="1.5"/><rect x="89" y="432" width="12" height="22" rx="1.5" fill="#F43F5E"/>
+    <line x1="130" y1="410" x2="130" y2="458" stroke="#10B981" stroke-width="1.5"/><rect x="124" y="418" width="12" height="32" rx="1.5" fill="#10B981"/>
+    <line x1="165" y1="395" x2="165" y2="435" stroke="#10B981" stroke-width="1.5"/><rect x="159" y="402" width="12" height="20" rx="1.5" fill="#10B981"/>
+    <line x1="200" y1="388" x2="200" y2="424" stroke="#F43F5E" stroke-width="1.5"/><rect x="194" y="396" width="12" height="16" rx="1.5" fill="#F43F5E"/>
+    <line x1="235" y1="362" x2="235" y2="412" stroke="#10B981" stroke-width="1.5"/><rect x="229" y="370" width="12" height="30" rx="1.5" fill="#10B981"/>
+    <line x1="270" y1="348" x2="270" y2="386" stroke="#10B981" stroke-width="1.5"/><rect x="264" y="355" width="12" height="20" rx="1.5" fill="#10B981"/>
+    <line x1="305" y1="352" x2="305" y2="392" stroke="#F43F5E" stroke-width="1.5"/><rect x="299" y="358" width="12" height="22" rx="1.5" fill="#F43F5E"/>
+    <line x1="340" y1="328" x2="340" y2="378" stroke="#10B981" stroke-width="1.5"/><rect x="334" y="334" width="12" height="34" rx="1.5" fill="#10B981"/>
+    <!-- Entry Marker -->
+    <polygon points="340,386 333,398 347,398" fill="#38BDF8"/>
+    <line x1="375" y1="312" x2="375" y2="350" stroke="#10B981" stroke-width="1.5"/><rect x="369" y="318" width="12" height="22" rx="1.5" fill="#10B981"/>
+    <line x1="410" y1="304" x2="410" y2="340" stroke="#F43F5E" stroke-width="1.5"/><rect x="404" y="312" width="12" height="16" rx="1.5" fill="#F43F5E"/>
+    <line x1="445" y1="286" x2="445" y2="332" stroke="#10B981" stroke-width="1.5"/><rect x="439" y="294" width="12" height="28" rx="1.5" fill="#10B981"/>
+    <line x1="480" y1="274" x2="480" y2="315" stroke="#10B981" stroke-width="1.5"/><rect x="474" y="280" width="12" height="22" rx="1.5" fill="#10B981"/>
+    <line x1="725" y1="252" x2="725" y2="296" stroke="#10B981" stroke-width="1.5"/><rect x="719" y="260" width="12" height="26" rx="1.5" fill="#10B981"/>
+    <line x1="760" y1="244" x2="760" y2="282" stroke="#F43F5E" stroke-width="1.5"/><rect x="754" y="252" width="12" height="15" rx="1.5" fill="#F43F5E"/>
+    <line x1="795" y1="226" x2="795" y2="270" stroke="#10B981" stroke-width="1.5"/><rect x="789" y="234" width="12" height="26" rx="1.5" fill="#10B981"/>
+    <line x1="830" y1="215" x2="830" y2="256" stroke="#10B981" stroke-width="1.5"/><rect x="824" y="222" width="12" height="22" rx="1.5" fill="#10B981"/>
+  </g>
+
+  <!-- EMA9 & EMA21 Curves -->
+  <path d="M 95 445 Q 235 385, 340 348 T 580 288 T 830 232" fill="none" stroke="#F59E0B" stroke-width="2"/>
+  <path d="M 95 458 Q 235 408, 340 374 T 580 315 T 830 258" fill="none" stroke="#38BDF8" stroke-width="1.8"/>
+
+  <!-- 5. Right Multi-Dimensional Side Panel -->
+  <rect x="942" y="168" width="324" height="388" rx="10" fill="#0B1120" stroke="#1E293B"/>
+  <rect x="943" y="169" width="322" height="34" rx="9" fill="#0F172A"/>
+  <g transform="translate(956, 190)" font-family="'PingFang SC', sans-serif" font-size="11" font-weight="600">
+    <text x="0" y="0" fill="#38BDF8">指标</text>
+    <line x1="0" y1="12" x2="24" y2="12" stroke="#38BDF8" stroke-width="2"/>
+    <text x="42" y="0" fill="#94A3B8">AI分析</text>
+    <text x="94" y="0" fill="#A78BFA">📓 策略匹配</text>
+    <text x="170" y="0" fill="#94A3B8">持仓(2)</text>
+    <text x="224" y="0" fill="#94A3B8">榜单</text>
+    <text x="264" y="0" fill="#94A3B8">推荐</text>
+  </g>
+
+  <!-- Smart Money Card -->
+  <rect x="954" y="214" width="300" height="96" rx="8" fill="#111A2E" stroke="#10B981" stroke-opacity="0.35"/>
+  <text x="968" y="236" fill="#F8FAFC" font-family="'PingFang SC', sans-serif" font-size="12" font-weight="700">🐋 聪明钱订单流综合评分</text>
+  <rect x="1178" y="221" width="64" height="20" rx="10" fill="#064E3B"/>
+  <text x="1188" y="235" fill="#34D399" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700">+78 吸筹</text>
+  <text x="968" y="260" fill="#94A3B8" font-family="'PingFang SC', sans-serif" font-size="10.5">大户多空比 1.84 · OI 增仓 +6.2% · 散户做空拥挤</text>
+  <rect x="968" y="274" width="272" height="8" rx="4" fill="#1E293B"/>
+  <rect x="968" y="274" width="212" height="8" rx="4" fill="#10B981"/>
+  <text x="968" y="298" fill="#6EE7B7" font-family="'JetBrains Mono', monospace" font-size="10">Jev System-One Gating: APPROVED (p=0.91)</text>
+
+  <!-- Obsidian Playbook Match Card -->
+  <rect x="954" y="322" width="300" height="106" rx="8" fill="#0F172A" stroke="#8B5CF6" stroke-opacity="0.35"/>
+  <text x="968" y="344" fill="#C4B5FD" font-family="'PingFang SC', sans-serif" font-size="12" font-weight="700">📓 Obsidian 策略剧本实时共振</text>
+  <text x="968" y="366" fill="#E2E8F0" font-family="'PingFang SC', sans-serif" font-size="11">匹配模型：ICT 银弹 + POC 价值区回踩 (92%)</text>
+  <text x="968" y="388" fill="#94A3B8" font-family="'PingFang SC', sans-serif" font-size="10.5">✓ 1H 趋势多头对齐    ✓ 回踩 FVG 缩量确认</text>
+  <text x="968" y="408" fill="#34D399" font-family="'PingFang SC', sans-serif" font-size="10.5">✓ 五维习惯雷达评分：89.5 / 100 (无扛单/FOMO)</text>
+
+  <!-- Indicator Mini Grid -->
+  <rect x="954" y="440" width="145" height="52" rx="7" fill="#0F172A" stroke="#1E293B"/>
+  <text x="966" y="460" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="10">RSI (14)</text>
+  <text x="966" y="480" fill="#38BDF8" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">61.8 (健康)</text>
+
+  <rect x="1109" y="440" width="145" height="52" rx="7" fill="#0F172A" stroke="#1E293B"/>
+  <text x="1121" y="460" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="10">ATR (14) 波动</text>
+  <text x="1121" y="480" fill="#F59E0B" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="700">1.64% (适中)</text>
+
+  <!-- 6. Bottom Execution Diagnostics Panel -->
+  <rect x="14" y="566" width="1252" height="140" rx="10" fill="#0B1120" stroke="#1E293B"/>
+  <rect x="15" y="567" width="1250" height="32" rx="9" fill="#0F172A"/>
+  <g transform="translate(28, 587)" font-family="'PingFang SC', sans-serif" font-size="11" font-weight="600">
+    <text x="0" y="0" fill="#94A3B8">信号日志</text>
+    <text x="68" y="0" fill="#94A3B8">新闻情绪</text>
+    <text x="136" y="0" fill="#94A3B8">成交记录</text>
+    <text x="204" y="0" fill="#38BDF8">执行诊断 &amp; 对账</text>
+    <line x1="204" y1="11" x2="288" y2="11" stroke="#38BDF8" stroke-width="2"/>
+  </g>
+  <g transform="translate(28, 624)" font-family="'JetBrains Mono', 'PingFang SC', monospace" font-size="11">
+    <text x="0" y="0" fill="#10B981">[06:15:02] ✓ RECONCILE_OK</text>
+    <text x="210" y="0" fill="#CBD5E1">本地持仓缓存与 Binance 实盘账户双向核对 100% 一致 (0 差异 · 延迟 18ms)</text>
+    <text x="0" y="26" fill="#38BDF8">[06:12:40] ⚡ JEV_GATE_PASS</text>
+    <text x="210" y="26" fill="#CBD5E1">BTCUSDT LONG 信号通过 System-One 门禁 (risk=0.82/4.0, conf=0.91, R:R=2.4:1)</text>
+    <text x="0" y="52" fill="#A78BFA">[06:10:00] 📓 VAULT_SYNC</text>
+    <text x="210" y="52" fill="#94A3B8">Obsidian 复盘笔记与五维习惯雷达自动归档完成 · 知识地图 MOC 已刷新</text>
+  </g>
+
+  <!-- 7. Floating Glassmorphic Ctrl+K Command Palette Overlay -->
+  <g transform="translate(390, 212)">
+    <rect x="-6" y="-6" width="500" height="252" rx="18" fill="#000000" fill-opacity="0.45"/>
+    <rect width="488" height="240" rx="14" fill="url(#cmdBg)" stroke="#38BDF8" stroke-opacity="0.55" stroke-width="1.5"/>
+    <text x="18" y="30" fill="#38BDF8" font-family="'Inter', sans-serif" font-size="14" font-weight="700">⌘</text>
+    <text x="42" y="30" fill="#F8FAFC" font-family="'PingFang SC', sans-serif" font-size="12.5">输入合约代码 (BTC / SOL)、周期或工作台指令...</text>
+    <rect x="436" y="15" width="36" height="20" rx="4" fill="#1E293B"/>
+    <text x="444" y="29" fill="#94A3B8" font-family="'JetBrains Mono', monospace" font-size="9.5">ESC</text>
+    <line x1="0" y1="45" x2="488" y2="45" stroke="#1E293B"/>
+
+    <!-- Command Items -->
+    <rect x="10" y="54" width="468" height="36" rx="8" fill="#38BDF8" fill-opacity="0.16"/>
+    <text x="24" y="77" fill="#F8FAFC" font-family="'PingFang SC', sans-serif" font-size="12" font-weight="600">⚡ 打开策略自进化与历史回测工作台</text>
+    <text x="382" y="76" fill="#7DD3FC" font-family="'JetBrains Mono', monospace" font-size="10">Evolution ↵</text>
+
+    <text x="24" y="115" fill="#CBD5E1" font-family="'PingFang SC', sans-serif" font-size="12">🪙 切换至 SOLUSDT 永续合约 · 加载实时 K 线与 AI 解盘</text>
+    <text x="415" y="114" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="10">Symbol</text>
+
+    <text x="24" y="151" fill="#CBD5E1" font-family="'PingFang SC', sans-serif" font-size="12">📓 打开 Obsidian 量化知识中枢与五维习惯雷达</text>
+    <text x="422" y="150" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="10">Vault</text>
+
+    <text x="24" y="187" fill="#CBD5E1" font-family="'PingFang SC', sans-serif" font-size="12">✍️ 打开币安广场 AI 博客工作室 (16:9 封面合成)</text>
+    <text x="418" y="186" fill="#64748B" font-family="'JetBrains Mono', monospace" font-size="10">Studio</text>
+
+    <line x1="0" y1="206" x2="488" y2="206" stroke="#1E293B"/>
+    <text x="16" y="227" fill="#64748B" font-family="'JetBrains Mono', 'PingFang SC', sans-serif" font-size="10.5">↑↓ 导航  ·  ↵ 执行  ·  F 全屏看盘  ·  D 明暗主题秒切</text>
+  </g>
+</svg>

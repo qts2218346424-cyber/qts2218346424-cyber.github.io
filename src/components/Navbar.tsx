@@ -29,13 +29,15 @@ interface NavbarProps {
 }
 
 const NAV_ITEMS = [
-  { id: 'hero', label: '樱坡序章' },
-  { id: 'coreforge', label: 'CoreForge 研核' },
+  { id: 'hero', label: '樱坡' },
+  { id: 'coreforge', label: '研核知识库' },
   { id: 'antigravity', label: '反重力汉化' },
+  { id: 'persona', label: '星语恋庭' },
+  { id: 'quant', label: '苍穹量枢' },
   { id: 'clannad', label: '光坂纪念馆' },
   { id: 'matrix', label: '项目矩阵' },
-  { id: 'blog', label: '架构手记' },
-  { id: 'contact', label: '星海联络' },
+  { id: 'blog', label: '手记' },
+  { id: 'contact', label: '联络' },
 ] as const;
 
 export const Navbar: React.FC<NavbarProps> = ({

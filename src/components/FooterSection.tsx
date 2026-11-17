@@ -212,27 +212,38 @@ export const FooterSection: React.FC = () => {
         <div className="clannad-crystal-panel rounded-3xl p-8 sm:p-11 mb-12">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div className="max-w-xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-cyan-300 mb-3">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-amber-200 mb-3">
                 <Orbit className="h-4 w-4" />
-                <span>星门已就绪 · 立即开启沉浸体验</span>
+                <span>星门已就绪 · 四大旗舰全生态直连</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
-                无论是构筑第二大脑，还是打造极致中文开发体验
+              <h2 className="font-clannad-serif text-2xl sm:text-3xl font-bold text-white leading-snug">
+                从智能知识大脑、高定桌面汉化，到番剧互动剧场与量化风控实验室
               </h2>
-              <p className="mt-3 text-sm sm:text-base text-slate-300">
-                如果这两个开源项目为你节省了时间或带来了感动，欢迎前往官网在线体验，或在 GitHub 与 B站支持关注。
+              <p className="mt-3 text-sm sm:text-base text-pink-50/85">
+                如果这四个开源项目为你节省了时间或带来了感动，欢迎在线体验或在 GitHub 与 B站支持关注。
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-3.5 shrink-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 shrink-0">
               <a
                 href={AUTHOR_PROFILE.coreforgeSite}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-400 to-indigo-500 px-6 py-4 text-sm font-extrabold text-slate-950 shadow-[0_0_32px_rgba(56,189,248,0.45)] hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-sky-200 to-pink-200 px-5 py-3.5 text-xs sm:text-sm font-bold text-[#1d1630] shadow-[0_0_24px_rgba(186,230,253,0.35)] hover:brightness-105 transition-all"
               >
                 <Zap className="h-4 w-4" />
-                <span>前往 CoreForge 研核官网</span>
+                <span>CoreForge 研核官网</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+
+              <a
+                href={AUTHOR_PROFILE.personaDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-pink-200 to-amber-100 px-5 py-3.5 text-xs sm:text-sm font-bold text-[#1d1630] shadow-[0_0_24px_rgba(249,168,212,0.35)] hover:brightness-105 transition-all"
+              >
+                <Sparkles className="h-4 w-4" />
+                <span>星语恋庭在线剧场</span>
                 <ArrowUpRight className="h-4 w-4" />
               </a>
 
@@ -240,10 +251,19 @@ export const FooterSection: React.FC = () => {
                 href={AUTHOR_PROFILE.antigravityRepo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-pink-400/45 bg-pink-500/15 px-6 py-4 text-sm font-extrabold text-pink-100 hover:bg-pink-500/25 transition-all"
+                className="clannad-pill-btn inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3.5 text-xs sm:text-sm font-semibold text-pink-100"
               >
-                <Sparkles className="h-4 w-4 text-pink-400" />
-                <span>前往 Antigravity 汉化仓库</span>
+                <span>Antigravity 汉化仓库</span>
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+
+              <a
+                href={AUTHOR_PROFILE.quantRepo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="clannad-pill-btn inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3.5 text-xs sm:text-sm font-semibold text-amber-100"
+              >
+                <span>苍穹量枢量化仓库</span>
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
