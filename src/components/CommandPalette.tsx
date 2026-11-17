@@ -240,7 +240,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             runItem(filtered[selectedIndex]);
           }
         }}
-        className="rounded-2xl border border-slate-700/80 bg-[#080c18]/96 shadow-[0_30px_90px_rgba(0,0,0,0.9)] backdrop-blur-2xl overflow-hidden"
+        className="rounded-3xl border border-pink-200/35 bg-[#1a152d]/92 shadow-[0_30px_90px_rgba(10,8,24,0.88)] backdrop-blur-2xl overflow-hidden"
       >
         <div className="flex items-center gap-3 px-4 py-3.5 border-b border-slate-800">
           <Search className="h-4 w-4 text-cyan-400 shrink-0" />

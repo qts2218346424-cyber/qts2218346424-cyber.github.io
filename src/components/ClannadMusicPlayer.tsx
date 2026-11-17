@@ -10,11 +10,11 @@ import {
   Repeat,
   SkipBack,
   SkipForward,
-  Sparkles,
   Volume2,
   VolumeX,
 } from 'lucide-react';
 import { CLANNAD_TRACKS, ClannadTrackId } from '../data/clannadData';
+import { HikariOrbIcon, SakuraBlossomIcon } from './ClannadMotifs';
 
 interface ClannadMusicPlayerProps {
   /** 外部（如名场面画廊或首屏按钮）请求切换并播放某首 CLANNAD 曲目 */
@@ -209,16 +209,15 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
         }}
       />
 
-      {/* 收起态：旋转团子黑胶灵动岛悬浮舱 */}
+      {/* 收起态：高定暮樱琉璃 × 旋转团子唱片灵动岛 */}
       {!expanded ? (
         <div
           style={{
-            borderColor: `${currentTrack.accent}66`,
             boxShadow: isPlaying
-              ? `0 16px 42px -8px rgba(0,0,0,0.85), 0 0 28px ${currentTrack.accent}45`
-              : '0 16px 40px -10px rgba(0,0,0,0.85)',
+              ? `0 18px 44px -8px rgba(10,8,24,0.75), 0 0 28px ${currentTrack.accent}45`
+              : '0 16px 40px -10px rgba(10,8,24,0.68)',
           }}
-          className="flex items-center gap-2.5 rounded-full border bg-[#090d1a]/92 p-1.5 pr-3 backdrop-blur-2xl transition-all"
+          className="flex items-center gap-2.5 rounded-full border border-pink-200/35 bg-[#1c162f]/82 p-1.5 pr-3.5 backdrop-blur-2xl transition-all"
         >
           {/* 团子唱片芯播放键 */}
           <button
@@ -253,12 +252,13 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
             className="text-left min-w-0 max-w-[195px] sm:max-w-[240px] cursor-pointer"
           >
             <div className="flex items-center gap-1.5">
-              <span className="text-xs font-bold text-white truncate">
-                {isPlaying ? `🎵 ${currentTrack.title}` : `点播 CLANNAD 原声 · ${currentTrack.title}`}
+              <SakuraBlossomIcon className="h-3.5 w-3.5 shrink-0" />
+              <span className="text-xs font-semibold tracking-wide text-white truncate">
+                {isPlaying ? currentTrack.title : `原声八音盒 · ${currentTrack.title}`}
               </span>
             </div>
-            <div className="text-[10px] text-pink-200/85 truncate">
-              {isPlaying ? activeLyric.zh : '4 首原动画全长曲目可切换 · 点击展开唱机'}
+            <div className="text-[10px] text-pink-100/80 truncate">
+              {isPlaying ? activeLyric.zh : '4 首 CLANNAD 全长原曲可切换 · 点击展开'}
             </div>
           </button>
 
@@ -285,19 +285,18 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
           </div>
         </div>
       ) : (
-        /* 展开态：高定磨玻璃星海黑胶八音盒唱机 */
+        /* 展开态：高定暮樱琉璃 × 星海八音盒黑胶唱机 */
         <div
           style={{
-            borderColor: `${currentTrack.accent}55`,
-            boxShadow: `0 28px 80px -15px rgba(0,0,0,0.92), 0 0 42px ${currentTrack.accent}33`,
+            boxShadow: `0 28px 80px -15px rgba(10,8,24,0.85), 0 0 42px ${currentTrack.accent}33`,
           }}
-          className="w-[340px] sm:w-[385px] rounded-3xl border bg-[#080c18]/95 p-4 backdrop-blur-2xl text-slate-100"
+          className="w-[340px] sm:w-[385px] rounded-3xl border border-pink-200/35 bg-[#1b152d]/86 p-4 backdrop-blur-2xl text-pink-50"
         >
           {/* 顶部栏 */}
-          <div className="flex items-center justify-between gap-2 pb-3 border-b border-slate-800/90">
-            <div className="flex items-center gap-2 text-xs font-bold text-pink-200">
-              <Sparkles className="h-3.5 w-3.5 text-amber-300" />
-              <span>CLANNAD · 星海黑胶原声点播台</span>
+          <div className="flex items-center justify-between gap-2 pb-3 border-b border-pink-200/20">
+            <div className="flex items-center gap-2 text-xs font-semibold tracking-wide text-pink-100">
+              <HikariOrbIcon className="h-4 w-4" />
+              <span className="font-clannad-serif">CLANNAD · 星海八音盒唱机</span>
             </div>
             <div className="flex items-center gap-1">
               <button
@@ -366,7 +365,7 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
           {/* 实时频谱光柱 */}
           <div
             aria-hidden="true"
-            className="mt-3 flex h-7 items-end justify-between gap-1 rounded-xl bg-slate-950/80 px-3 py-1.5 border border-slate-800/80"
+            className="clannad-silk-subcard mt-3 flex h-7 items-end justify-between gap-1 rounded-xl px-3 py-1.5"
           >
             {bars.map((heightPct, idx) => (
               <span
@@ -381,7 +380,7 @@ export const ClannadMusicPlayer: React.FC<ClannadMusicPlayerProps> = ({
           </div>
 
           {/* 双语动态同步歌词舱 */}
-          <div className="mt-2.5 rounded-xl border border-slate-800/90 bg-slate-900/65 px-3 py-2 text-center">
+          <div className="clannad-silk-subcard mt-2.5 rounded-xl px-3 py-2 text-center">
             {activeLyric.jp && (
               <div className="text-[10px] text-slate-400 truncate">{activeLyric.jp}</div>
             )}

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Houdini 自定义属性：驱动 360° 樱花光玉旋转流光边框 */
+/* Houdini 自定义属性：驱动 360° 香槟光玉与春樱旋转流光边框 */
 @property --beam-angle {
   syntax: "<angle>";
   initial-value: 0deg;
@@ -22,8 +22,13 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #121629;
+  background-color: #161426;
   font-family: "Inter", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei UI", system-ui, -apple-system, sans-serif;
+}
+
+/* 京都动画电影海报级人文衬线标题字体族 */
+.font-clannad-serif {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", Georgia, serif;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -32,34 +37,34 @@ html {
   }
 }
 
-/* 温润樱花粉金极窄滚动条 */
+/* 温润香槟樱粉滚动条 */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(18, 22, 41, 0.75);
+  background: rgba(20, 18, 34, 0.72);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(244, 114, 182, 0.45);
+  background: linear-gradient(180deg, rgba(249, 168, 212, 0.55), rgba(253, 230, 138, 0.55));
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(251, 191, 36, 0.85);
+  background: linear-gradient(180deg, rgba(244, 114, 182, 0.85), rgba(251, 191, 36, 0.85));
 }
 
-/* 零主线程开销：原生 CSS Scroll-Driven 春樱光玉阅读进度光轨 */
+/* 零主线程开销：春樱 × 香槟光玉 × 晴空阅读进度光轨 */
 #scroll-progress-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 2.5px;
   z-index: 90;
   transform-origin: 0 50%;
   transform: scaleX(0);
-  background: linear-gradient(90deg var(--in-oklch), #f9a8d4, #fbbf24, #7dd3fc, #f472b6);
-  box-shadow: 0 0 16px rgba(244, 114, 182, 0.85);
+  background: linear-gradient(90deg var(--in-oklch), #fbcfe8, #fde68a, #bae6fd, #f9a8d4);
+  box-shadow: 0 0 14px rgba(253, 230, 138, 0.75);
   pointer-events: none;
 }
 
@@ -81,41 +86,80 @@ html {
   }
 }
 
-/* CLANNAD 春樱 × 晴空 × 奇迹光玉文字渐变（采用 OKLCH 高饱和插值） */
+/* 典藏级温润春樱 × 香槟光玉标题渐变 */
 .text-aurora-gradient {
-  background: linear-gradient(120deg var(--in-oklch), #fff1f6 8%, #fbcfe8 36%, #fde68a 68%, #bae6fd 98%);
+  background: linear-gradient(118deg var(--in-oklch), #fff7fb 10%, #fbcfe8 42%, #fde68a 74%, #bae6fd 98%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .text-coreforge-gradient {
-  background: linear-gradient(120deg var(--in-oklch), #bae6fd 0%, #7dd3fc 48%, #c4b5fd 100%);
+  background: linear-gradient(120deg var(--in-oklch), #e0f2fe 0%, #93c5fd 50%, #fbcfe8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .text-antigravity-gradient {
-  background: linear-gradient(120deg var(--in-oklch), #fbcfe8 0%, #f472b6 48%, #fde047 100%);
+  background: linear-gradient(120deg var(--in-oklch), #fce7f3 0%, #f9a8d4 48%, #fde68a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* 通用 CLANNAD 液态水晶玻璃面板（高透光折射背后高清动漫壁纸） */
+/* 光坂典藏级主面板：暮樱紫檀琉璃 + 香槟樱白双层微距高光 */
 .clannad-crystal-panel {
+  position: relative;
   background: linear-gradient(
-    155deg var(--in-oklab),
-    rgba(22, 24, 48, 0.56),
-    rgba(30, 19, 42, 0.64)
+    158deg var(--in-oklab),
+    rgba(24, 21, 40, 0.62),
+    rgba(31, 22, 43, 0.68)
   );
-  border: 1px solid rgba(255, 228, 240, 0.24);
+  border: 1px solid rgba(255, 228, 240, 0.26);
   box-shadow:
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
-    0 24px 60px -15px rgba(8, 10, 26, 0.58);
-  backdrop-filter: blur(22px) saturate(165%);
-  -webkit-backdrop-filter: blur(22px) saturate(165%);
+    inset 0 1px 0 0 rgba(255, 248, 252, 0.32),
+    inset 0 0 28px 0 rgba(249, 168, 212, 0.05),
+    0 24px 64px -16px rgba(10, 8, 24, 0.62);
+  backdrop-filter: blur(24px) saturate(165%);
+  -webkit-backdrop-filter: blur(24px) saturate(165%);
+}
+
+/* 二级丝绸雾面内嵌子卡（彻底替代生硬死黑的 slate-950 / slate-900） */
+.clannad-silk-subcard {
+  background: linear-gradient(
+    160deg var(--in-oklab),
+    rgba(255, 242, 248, 0.075),
+    rgba(253, 230, 138, 0.035)
+  );
+  border: 1px solid rgba(255, 228, 240, 0.18);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+}
+
+/* 高定顶栏与小控件专属：樱白香槟微光胶囊按钮 */
+.clannad-pill-btn {
+  background: linear-gradient(
+    180deg var(--in-oklab),
+    rgba(255, 244, 250, 0.14),
+    rgba(249, 168, 212, 0.07)
+  );
+  border: 1px solid rgba(255, 228, 240, 0.28);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.26),
+    0 4px 14px -4px rgba(12, 8, 26, 0.45);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clannad-pill-btn:hover {
+  background: linear-gradient(
+    180deg var(--in-oklab),
+    rgba(255, 236, 246, 0.24),
+    rgba(253, 230, 138, 0.14)
+  );
+  border-color: rgba(253, 230, 138, 0.55);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
+    0 0 20px -4px rgba(249, 168, 212, 0.45);
 }
 
 /* 樱花光玉流光主按钮 */
@@ -132,41 +176,40 @@ html {
   padding: 1.5px;
   background: conic-gradient(
     from var(--beam-angle),
-    rgba(249, 168, 212, 0.25) 0%,
-    rgba(244, 114, 182, 0.98) 20%,
-    rgba(251, 191, 36, 0.98) 38%,
-    rgba(125, 211, 252, 0.85) 54%,
-    rgba(255, 255, 255, 0.18) 100%
+    rgba(255, 228, 240, 0.28) 0%,
+    rgba(249, 168, 212, 0.96) 22%,
+    rgba(253, 230, 138, 0.98) 40%,
+    rgba(186, 230, 253, 0.88) 56%,
+    rgba(255, 228, 240, 0.22) 100%
   );
   box-shadow:
-    0 0 32px -4px rgba(244, 114, 182, 0.52),
-    0 12px 30px -10px rgba(10, 8, 24, 0.65);
+    0 0 32px -5px rgba(249, 168, 212, 0.55),
+    0 12px 28px -10px rgba(12, 8, 28, 0.6);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .conic-beam-btn[data-motion="active"] {
-    animation: spin-beam 4.5s linear infinite;
+    animation: spin-beam 5s linear infinite;
   }
 }
 
-/* VisionOS × 京都动画风 鼠标感应珠光水晶卡片 */
+/* 珠光水晶 Bento 卡片 */
 .spotlight-card {
   position: relative;
-  border-radius: 1.35rem;
+  border-radius: 1.5rem;
   background: linear-gradient(
     160deg var(--in-oklab),
-    rgba(24, 26, 52, 0.55),
-    rgba(32, 20, 44, 0.62)
+    rgba(25, 22, 42, 0.6),
+    rgba(33, 22, 45, 0.66)
   );
   box-shadow:
-    inset 0 1px 1px 0 rgba(255, 240, 248, 0.24),
-    0 22px 52px -16px rgba(9, 11, 28, 0.56);
-  backdrop-filter: blur(22px) saturate(170%);
-  -webkit-backdrop-filter: blur(22px) saturate(170%);
+    inset 0 1px 0 0 rgba(255, 245, 250, 0.3),
+    0 22px 54px -16px rgba(10, 8, 26, 0.58);
+  backdrop-filter: blur(24px) saturate(165%);
+  -webkit-backdrop-filter: blur(24px) saturate(165%);
   overflow: hidden;
 }
 
-/* 1px 感应樱花珠光边框折射层 */
 .spotlight-card::before {
   content: "";
   position: absolute;
@@ -175,9 +218,9 @@ html {
   padding: 1px;
   background: radial-gradient(
     520px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
-    var(--spotlight-color, rgba(249, 168, 212, 0.82)),
-    rgba(255, 228, 242, 0.24) 42%,
-    rgba(255, 255, 255, 0.12) 100%
+    var(--spotlight-color, rgba(253, 230, 138, 0.85)),
+    rgba(249, 168, 212, 0.28) 42%,
+    rgba(255, 255, 255, 0.14) 100%
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -188,15 +231,14 @@ html {
   z-index: 2;
 }
 
-/* 表面柔和暖粉与琥珀漫反射层 */
 .spotlight-card::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    640px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
-    var(--spotlight-surface, rgba(249, 168, 212, 0.14)),
+    620px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    var(--spotlight-surface, rgba(253, 230, 138, 0.12)),
     transparent 46%
   );
   pointer-events: none;
@@ -230,10 +272,10 @@ html {
 
 @media (prefers-reduced-motion: no-preference) {
   .marquee-track-left[data-paused="false"] {
-    animation: marquee-left 34s linear infinite;
+    animation: marquee-left 36s linear infinite;
   }
   .marquee-track-right[data-paused="false"] {
-    animation: marquee-right 38s linear infinite;
+    animation: marquee-right 40s linear infinite;
   }
   .marquee-track-left:hover,
   .marquee-track-right:hover {
@@ -241,7 +283,7 @@ html {
   }
 }
 
-/* 原生 Top-Layer <dialog> 模态框丝滑入场与离场过渡 */
+/* 原生 Top-Layer <dialog> 模态框丝滑过渡 */
 dialog.cyber-dialog {
   opacity: 0;
   margin: auto;
@@ -252,22 +294,22 @@ dialog.cyber-dialog {
   max-height: 90vh;
   color: inherit;
   transition-property: opacity, transform, display, overlay;
-  transition-duration: 0.26s;
+  transition-duration: 0.28s;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   transition-behavior: allow-discrete;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   dialog.cyber-dialog {
-    transform: scale(0.94) translateY(10px);
+    transform: scale(0.95) translateY(10px);
   }
 }
 
 dialog.cyber-dialog::backdrop {
-  background-color: rgb(14 12 28 / 0);
+  background-color: rgb(18 14 30 / 0);
   backdrop-filter: blur(0px);
   transition-property: background-color, backdrop-filter, display, overlay;
-  transition-duration: 0.26s;
+  transition-duration: 0.28s;
   transition-timing-function: ease-out;
   transition-behavior: allow-discrete;
 }
@@ -283,17 +325,17 @@ dialog.cyber-dialog::backdrop {
     transform: scale(1) translateY(0);
 
     @starting-style {
-      transform: scale(0.94) translateY(10px);
+      transform: scale(0.95) translateY(10px);
     }
   }
 }
 
 :is(dialog.cyber-dialog[open]):where(:not([data-closing]))::backdrop {
-  background-color: rgb(14 12 28 / 0.68);
+  background-color: rgb(18 14 30 / 0.65);
   backdrop-filter: blur(14px);
 
   @starting-style {
-    background-color: rgb(14 12 28 / 0);
+    background-color: rgb(18 14 30 / 0);
     backdrop-filter: blur(0px);
   }
 }

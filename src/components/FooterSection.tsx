@@ -8,12 +8,11 @@ import {
   Mail,
   MessageCircle,
   Orbit,
-  Radio,
   Sparkles,
-  Tv,
   Zap,
 } from 'lucide-react';
 import { AUTHOR_PROFILE } from '../data/siteData';
+import { BilibiliIcon, HikariOrbIcon } from './ClannadMotifs';
 
 export const FooterSection: React.FC = () => {
   const [copiedField, setCopiedField] = useState<'qq' | 'uid' | 'email' | null>(null);
@@ -38,14 +37,14 @@ export const FooterSection: React.FC = () => {
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6">
         {/* 第一层：星海电波 · 个人社交与开源联络矩阵 */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-semibold text-cyan-300 mb-3">
-            <Radio className="h-3.5 w-3.5" />
+          <div className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-medium tracking-wide text-pink-100 mb-3">
+            <HikariOrbIcon className="h-3.5 w-3.5" />
             <span>星海电波 · 社交关注与即时联络</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="font-clannad-serif text-2xl sm:text-4xl font-bold tracking-wider text-white">
             随时与我取得联系 <span className="text-aurora-gradient">· 共话技术与热爱</span>
           </h2>
-          <p className="mt-2 text-sm sm:text-base text-slate-300 max-w-2xl">
+          <p className="mt-2 text-sm sm:text-base text-pink-50/85 max-w-2xl">
             欢迎在 B 站关注我的最新项目实机演示动态，或通过 QQ 与个人邮箱交流全栈开发、桌面汉化内核与《CLANNAD》同好话题。
           </p>
 
@@ -54,8 +53,8 @@ export const FooterSection: React.FC = () => {
             <div className="clannad-crystal-panel rounded-2xl p-5 hover:border-pink-300/65 transition-all flex flex-col justify-between gap-4">
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="h-10 w-10 rounded-xl bg-pink-500/15 border border-pink-400/35 flex items-center justify-center text-pink-300">
-                    <Tv className="h-5 w-5" />
+                  <span className="h-10 w-10 rounded-xl bg-pink-400/20 border border-pink-200/35 flex items-center justify-center text-pink-200">
+                    <BilibiliIcon className="h-5 w-5" />
                   </span>
                   <span className="rounded-full bg-pink-500/15 px-2.5 py-0.5 text-[10px] font-bold text-pink-200 border border-pink-400/25">
                     视频与动态主页

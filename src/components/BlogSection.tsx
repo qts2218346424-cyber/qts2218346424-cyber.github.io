@@ -66,14 +66,14 @@ export const BlogSection: React.FC<{
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 mb-4">
-              <BookOpenText className="h-3.5 w-3.5" />
-              <span>硬核工程深潜 · 架构造物手记</span>
+            <div className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-medium tracking-wide text-pink-100 mb-4">
+              <BookOpenText className="h-3.5 w-3.5 text-amber-200" />
+              <span>硬核工程深潜 · 光坂图书室手记</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-              深度技术专栏 <span className="text-aurora-gradient">& 源码实战复盘</span>
+            <h2 className="font-clannad-serif text-3xl sm:text-5xl font-bold tracking-wider text-white">
+              深度技术专栏 <span className="text-aurora-gradient">&amp; 源码实战复盘</span>
             </h2>
-            <p className="mt-3 max-w-2xl text-slate-300 text-base">
+            <p className="mt-3 max-w-2xl text-pink-50/85 text-base">
               不写空洞的概念堆砌，只记录在打磨 <strong className="text-white">CoreForge 研核</strong> 与{' '}
               <strong className="text-white">Antigravity Studio</strong> 过程中跨越过的真实系统级深水区。
             </p>
@@ -88,8 +88,8 @@ export const BlogSection: React.FC<{
                 onClick={() => setSelectedCategory(cat)}
                 className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-white text-slate-950 shadow-[0_0_20px_rgba(255,255,255,0.3)]'
-                    : 'border border-slate-800 bg-slate-900/75 text-slate-300 hover:border-slate-600'
+                    ? 'bg-gradient-to-r from-pink-200 to-amber-100 text-[#1d1630] shadow-[0_0_20px_rgba(249,168,212,0.35)]'
+                    : 'clannad-pill-btn text-pink-50/85'
                 }`}
               >
                 {cat}

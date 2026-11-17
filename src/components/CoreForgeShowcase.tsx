@@ -15,7 +15,6 @@ import {
   ShieldCheck,
   Sparkles,
   X,
-  Zap,
 } from 'lucide-react';
 import {
   AUTHOR_PROFILE,
@@ -26,6 +25,7 @@ import {
   KnowledgeNode,
 } from '../data/siteData';
 import { attachDialogEnhancements, closeDialogSmoothly } from '../utils/dialogHelper';
+import { HikariOrbIcon, SakuraCornerFiligree } from './ClannadMotifs';
 
 type LabTab = 'star-map' | 'taylor-lab' | 'gallery';
 
@@ -217,13 +217,13 @@ export const CoreForgeShowcase: React.FC = () => {
         {/* 顶部旗舰章节导语 */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-semibold text-cyan-300 mb-4">
-              <Zap className="h-3.5 w-3.5" />
+            <div className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-medium tracking-wide text-sky-100 mb-4">
+              <HikariOrbIcon className="h-3.5 w-3.5" />
               <span>重点旗舰项目 01 · 本地优先知识库与全栈智能研学系统</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+            <h2 className="font-clannad-serif text-3xl sm:text-5xl font-bold tracking-wider text-white">
               <span className="text-coreforge-gradient">CoreForge 研核</span>
-              <span className="text-slate-200"> · 研你所学，核力致胜</span>
+              <span className="text-pink-50"> · 研你所学，核力致胜</span>
             </h2>
             <p className="mt-4 max-w-2xl text-slate-300 text-base leading-relaxed">
               打破“刷题软件、PDF 讲义、Markdown 笔记”碎片化割裂困局。专为 <strong className="text-white">408 计算机综合与考研数/英/政</strong> 打造的一体化智能研学操作系统，与本机 <strong className="text-cyan-300">Obsidian 知识库 100% 双向实时同步</strong>。
@@ -236,16 +236,16 @@ export const CoreForgeShowcase: React.FC = () => {
               href={AUTHOR_PROFILE.coreforgeSite}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-500 px-5 py-3 text-sm font-bold text-slate-950 shadow-[0_0_30px_rgba(56,189,248,0.45)] hover:brightness-110 transition-all"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-200 via-amber-100 to-sky-200 px-5 py-3 text-sm font-bold text-[#1d1630] shadow-[0_0_28px_rgba(249,168,212,0.45)] hover:brightness-105 transition-all"
             >
-              <span>🌐 立即在线体验官网</span>
+              <span>立即在线体验官网</span>
               <ArrowUpRight className="h-4 w-4" />
             </a>
             <a
               href={AUTHOR_PROFILE.coreforgeRepo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-4 py-3 text-sm font-semibold text-slate-200 hover:border-cyan-400/60 hover:text-white transition-colors"
+              className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-pink-50"
             >
               <Github className="h-4 w-4" />
               <span>GitHub 源码</span>
@@ -272,19 +272,19 @@ export const CoreForgeShowcase: React.FC = () => {
 
               <div className="grid grid-cols-2 gap-3 mb-5">
                 {[
-                  { num: '1987–2024', desc: '统考真题精校库', accent: 'text-cyan-300' },
-                  { num: '22+ 实验室', desc: '单步算法与高数仿真', accent: 'text-indigo-300' },
-                  { num: '1839–2026', desc: '矢量中国史纲地图', accent: 'text-purple-300' },
-                  { num: '100% 主权', desc: 'Obsidian 原生 .md 互通', accent: 'text-emerald-300' },
+                  { num: '1987–2024', desc: '统考真题精校库', accent: 'text-sky-200' },
+                  { num: '22+ 实验室', desc: '单步算法与高数仿真', accent: 'text-pink-200' },
+                  { num: '1839–2026', desc: '矢量中国史纲地图', accent: 'text-amber-200' },
+                  { num: '100% 主权', desc: 'Obsidian 原生 .md 互通', accent: 'text-emerald-200' },
                 ].map((stat) => (
                   <div
                     key={stat.num}
-                    className="rounded-xl border border-slate-800/80 bg-slate-950/65 p-3.5"
+                    className="clannad-silk-subcard rounded-2xl p-3.5"
                   >
-                    <div className={`text-lg font-extrabold tracking-tight ${stat.accent}`}>
+                    <div className={`text-lg font-bold tracking-wide ${stat.accent}`}>
                       {stat.num}
                     </div>
-                    <div className="mt-0.5 text-xs text-slate-400">{stat.desc}</div>
+                    <div className="mt-0.5 text-xs text-pink-100/75">{stat.desc}</div>
                   </div>
                 ))}
               </div>
@@ -373,6 +373,7 @@ export const CoreForgeShowcase: React.FC = () => {
               }}
               className="clannad-crystal-panel relative h-full rounded-3xl p-4 sm:p-6 overflow-hidden flex flex-col"
             >
+              <SakuraCornerFiligree position="top-right" />
               {/* 动态高光镜面反射层 */}
               <div
                 aria-hidden="true"
@@ -396,13 +397,13 @@ export const CoreForgeShowcase: React.FC = () => {
                 <div
                   role="tablist"
                   aria-label="CoreForge 交互演示模式"
-                  className="flex items-center gap-1 rounded-xl bg-slate-900/90 p-1 border border-slate-800"
+                  className="flex items-center gap-1 rounded-full bg-[#1a152d]/70 p-1 border border-pink-200/25"
                 >
                   {(
                     [
-                      { id: 'star-map', label: '🔥 热力星图急救', icon: Activity },
-                      { id: 'taylor-lab', label: '📐 泰勒动态拟合', icon: LineChart },
-                      { id: 'gallery', label: '🖼️ 实机高清画廊', icon: Maximize2 },
+                      { id: 'star-map', label: '星海热力急救', icon: Activity },
+                      { id: 'taylor-lab', label: '泰勒动态拟合', icon: LineChart },
+                      { id: 'gallery', label: '实机高清画廊', icon: Maximize2 },
                     ] as const
                   ).map(({ id, label }) => (
                     <button
@@ -411,10 +412,10 @@ export const CoreForgeShowcase: React.FC = () => {
                       aria-selected={activeTab === id}
                       type="button"
                       onClick={() => setActiveTab(id)}
-                      className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
+                      className={`rounded-full px-3 py-1.5 text-xs font-medium transition-all cursor-pointer ${
                         activeTab === id
-                          ? 'bg-cyan-400/20 text-cyan-200 border border-cyan-400/35 shadow-[0_0_12px_rgba(56,189,248,0.25)]'
-                          : 'text-slate-400 hover:text-slate-200'
+                          ? 'bg-gradient-to-r from-pink-300/30 to-amber-200/25 text-white border border-pink-200/45 shadow-[0_0_12px_rgba(249,168,212,0.28)]'
+                          : 'text-pink-100/75 hover:text-white'
                       }`}
                     >
                       {label}
@@ -467,8 +468,8 @@ export const CoreForgeShowcase: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* 拓扑画布 */}
-                  <div className="relative h-64 sm:h-72 w-full rounded-xl border border-slate-800/90 bg-[#040711] overflow-hidden">
+                  {/* 星海光玉拓扑画布 */}
+                  <div className="relative h-64 sm:h-72 w-full rounded-2xl border border-pink-200/22 bg-[#171329]/72 backdrop-blur-md overflow-hidden">
                     <svg
                       viewBox="0 0 100 100"
                       preserveAspectRatio="none"
@@ -534,7 +535,7 @@ export const CoreForgeShowcase: React.FC = () => {
                   </div>
 
                   {/* 底部选中节点急救详情卡 */}
-                  <div className="rounded-xl border border-slate-800 bg-slate-900/75 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="clannad-silk-subcard rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                       <div className="flex items-center gap-2">
                         <span className="rounded bg-cyan-500/15 px-2 py-0.5 text-[11px] font-medium text-cyan-300">
@@ -619,7 +620,7 @@ export const CoreForgeShowcase: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="relative rounded-xl border border-slate-800 bg-[#040711] p-3 overflow-hidden">
+                  <div className="relative rounded-2xl border border-pink-200/22 bg-[#171329]/72 p-3 overflow-hidden">
                     <svg viewBox="0 0 560 230" className="w-full h-56">
                       {/* 坐标轴 */}
                       <line x1="0" y1="115" x2="560" y2="115" stroke="#1e293b" strokeWidth="1" />
@@ -652,7 +653,7 @@ export const CoreForgeShowcase: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="clannad-silk-subcard rounded-2xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                     <div>
                       <div className="font-mono text-xs sm:text-sm text-cyan-200">{formulaText}</div>
                       <p className="mt-1 text-xs text-slate-400">

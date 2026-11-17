@@ -12,17 +12,16 @@ import { CommandPalette } from './components/CommandPalette';
 import { FooterSection } from './components/FooterSection';
 import { BlogPost } from './data/siteData';
 import { ClannadTrackId } from './data/clannadData';
+import { DangoTrioCrest, SakuraBlossomIcon } from './components/ClannadMotifs';
 
-/** 章节之间温馨的 CLANNAD 三色团子与光玉分隔饰带 */
+/** 章节之间温馨的高定三色团子与香槟金丝分隔饰带 */
 const DangoSectionDivider: React.FC = () => (
-  <div aria-hidden="true" className="mx-auto max-w-4xl py-2 flex items-center justify-center gap-4">
-    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-pink-200/45 to-amber-200/55" />
-    <div className="flex items-center gap-2 rounded-full border border-white/25 bg-[#181834]/45 px-3 py-1 backdrop-blur-md shadow-sm">
-      <span className="h-2.5 w-2.5 rounded-full bg-pink-300 shadow-[0_0_8px_#f9a8d4]" />
-      <span className="h-2.5 w-2.5 rounded-full bg-sky-300 shadow-[0_0_8px_#7dd3fc]" />
-      <span className="h-2.5 w-2.5 rounded-full bg-amber-200 shadow-[0_0_8px_#fde68a]" />
+  <div aria-hidden="true" className="mx-auto max-w-4xl py-3 flex items-center justify-center gap-4 px-6">
+    <div className="h-[1px] flex-1 bg-gradient-to-r from-transparent via-pink-200/40 to-amber-200/60" />
+    <div className="clannad-pill-btn flex items-center gap-2 rounded-full px-3.5 py-1 backdrop-blur-md">
+      <DangoTrioCrest />
     </div>
-    <div className="h-px flex-1 bg-gradient-to-l from-transparent via-pink-200/45 to-amber-200/55" />
+    <div className="h-[1px] flex-1 bg-gradient-to-l from-transparent via-pink-200/40 to-amber-200/60" />
   </div>
 );
 
@@ -108,8 +107,9 @@ export const App: React.FC = () => {
 
       {/* 纯净赏景模式浮动提示胶囊 */}
       {scenicMode && (
-        <div className="fixed bottom-5 left-5 z-50 rounded-full border border-pink-200/45 bg-[#181632]/75 px-4 py-2 text-xs font-semibold text-pink-100 backdrop-blur-xl shadow-lg flex items-center gap-3">
-          <span>🌸 正在沉浸欣赏《CLANNAD》高清动态画境（按 Esc 或点击顶栏「恢复界面」返回）</span>
+        <div className="clannad-pill-btn fixed bottom-5 left-5 z-50 rounded-full px-4 py-2 text-xs font-medium text-pink-50 backdrop-blur-xl flex items-center gap-2">
+          <SakuraBlossomIcon className="h-4 w-4" />
+          <span>正在沉浸欣赏《CLANNAD》原作画境（按 Esc 或点击顶栏「恢复界面」返回）</span>
         </div>
       )}
 

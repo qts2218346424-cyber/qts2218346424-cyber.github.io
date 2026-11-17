@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Heart,
   Maximize2,
   Music,
   Play,
@@ -21,6 +20,7 @@ import {
   UshioPoseVoice,
 } from '../data/clannadData';
 import { attachDialogEnhancements, closeDialogSmoothly } from '../utils/dialogHelper';
+import { SakuraBlossomIcon } from './ClannadMotifs';
 
 interface ClannadSanctuaryProps {
   motionPaused: boolean;
@@ -286,11 +286,11 @@ export const ClannadSanctuary: React.FC<ClannadSanctuaryProps> = ({
         {/* 章节大标题区 */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-pink-400/35 bg-pink-500/12 px-3.5 py-1 text-xs font-semibold text-pink-200 mb-4 shadow-[0_0_24px_rgba(244,114,182,0.22)]">
-              <Heart className="h-3.5 w-3.5 text-pink-400 fill-pink-400/40" />
+            <div className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-medium tracking-wide text-pink-100 mb-4">
+              <SakuraBlossomIcon className="h-3.5 w-3.5" />
               <span>精神原乡 · 写作 CLANNAD，读作人生与家族</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+            <h2 className="font-clannad-serif text-3xl sm:text-5xl font-bold tracking-wider text-white">
               光坂坡道与星海光玉 ·{' '}
               <span className="text-antigravity-gradient">CLANNAD 永恒纪念馆</span>
             </h2>
@@ -398,7 +398,7 @@ export const ClannadSanctuary: React.FC<ClannadSanctuaryProps> = ({
             </div>
 
             {/* 右侧 4 列：本幕剧本对白 & 专属原曲一键联动点播 */}
-            <div className="lg:col-span-4 rounded-2xl border border-slate-800/90 bg-slate-950/70 p-5 flex flex-col justify-between gap-4">
+            <div className="clannad-silk-subcard lg:col-span-4 rounded-2xl p-5 flex flex-col justify-between gap-4">
               <div>
                 <div className="text-[11px] font-mono text-pink-300 mb-1">
                   {currentScene.episodeTag}
@@ -522,7 +522,7 @@ export const ClannadSanctuary: React.FC<ClannadSanctuaryProps> = ({
             </div>
 
             {/* 小汐立绘舞台 + 台词气泡 */}
-            <div className="rounded-2xl border border-slate-800/90 bg-[#050812]/85 p-4 flex flex-col sm:flex-row items-center gap-4">
+            <div className="clannad-silk-subcard rounded-2xl p-4 flex flex-col sm:flex-row items-center gap-4">
               <button
                 type="button"
                 onClick={() => handlePlayUshioVoice(activeUshio)}
@@ -602,7 +602,7 @@ export const ClannadSanctuary: React.FC<ClannadSanctuaryProps> = ({
             </div>
 
             {/* 6 只矢量团子琴键舞台 */}
-            <div className="rounded-2xl border border-slate-800/90 bg-[#050812]/85 px-3 py-6 grid grid-cols-3 sm:grid-cols-6 gap-2 place-items-center">
+            <div className="clannad-silk-subcard rounded-2xl px-3 py-6 grid grid-cols-3 sm:grid-cols-6 gap-2 place-items-center">
               {DANGO_FAMILY_MEMBERS.map((member) => (
                 <button
                   key={member.id}

@@ -185,7 +185,7 @@ export const COREFORGE_SCREENSHOTS: CoreForgeScreenshot[] = [
     id: 'hero',
     title: 'CoreForge 研核 · 全栈智能研学总控台',
     badge: '首屏全景总览',
-    src: './showcase/01_hero_overview.png',
+    src: './showcase/01_hero_overview_v2.png',
     description:
       '集历年统考精校题库、PDF 双栏精读、Obsidian 本地双链笔记、红黄绿热力星图与双魂桌宠语音伴学于一体的全科研学操作系统。',
     liveUrl: 'https://claudexxb.online',

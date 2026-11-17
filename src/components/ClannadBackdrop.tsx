@@ -15,11 +15,11 @@ export interface WorldBackdropOption {
 }
 
 export const WORLD_BACKDROP_OPTIONS: WorldBackdropOption[] = [
-  { id: 'auto', label: '✨ 四季随滚流转', shortLabel: '四季流转', badge: '随滚动自动切换名场面背景' },
-  { id: 'sakura', label: '🌸 光坂春樱坡道', shortLabel: '春樱坡道', badge: '清晨满开吉野樱与蔚蓝晴空' },
-  { id: 'sunflower', label: '🌻 盛夏黄金花海', shortLabel: '盛夏花海', badge: '第18话向日葵花田与积雨云' },
-  { id: 'orbs', label: '🌌 幻想星海光玉', shortLabel: '星海光玉', badge: '璀璨银河与漫天升腾心愿光玉' },
-  { id: 'reunion', label: '👨‍👩‍👧 光坂全员重逢', shortLabel: '全员合照', badge: '朋也·渚·汐与伙伴们全员大合照' },
+  { id: 'auto', label: '四季流转', shortLabel: '四季流转', badge: '随滚动自动切换名场面背景' },
+  { id: 'sakura', label: '光坂春樱', shortLabel: '春樱坡道', badge: '清晨满开吉野樱与蔚蓝晴空' },
+  { id: 'sunflower', label: '盛夏花海', shortLabel: '盛夏花海', badge: '第18话向日葵花田与积雨云' },
+  { id: 'orbs', label: '星海光玉', shortLabel: '星海光玉', badge: '璀璨银河与漫天升腾心愿光玉' },
+  { id: 'reunion', label: '全员重逢', shortLabel: '全员合照', badge: '朋也·渚·汐与伙伴们全员大合照' },
 ];
 
 const SCENE_WALLPAPERS: Record<Exclude<ClannadWorldTheme, 'auto'>, {

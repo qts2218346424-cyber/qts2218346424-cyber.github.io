@@ -115,15 +115,15 @@ export const BentoMatrix: React.FC<BentoMatrixProps> = ({ motionPaused }) => {
     <section id="matrix" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3.5 py-1 text-xs font-semibold text-indigo-300 mb-4">
-            <FolderGit2 className="h-3.5 w-3.5" />
-            <span>全项目仓库传送门 · 全息工程矩阵</span>
+          <div className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-medium tracking-wide text-pink-100 mb-4">
+            <FolderGit2 className="h-3.5 w-3.5 text-amber-200" />
+            <span>全项目仓库传送门 · 光坂工程矩阵</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-            开源项目全景传送门 <span className="text-aurora-gradient">& 全息工程矩阵</span>
+          <h2 className="font-clannad-serif text-3xl sm:text-5xl font-bold tracking-wider text-white">
+            开源项目全景传送门 <span className="text-aurora-gradient">&amp; 琉璃工程矩阵</span>
           </h2>
-          <p className="mt-3 max-w-2xl text-slate-300 text-base">
-            移动鼠标感受跨卡片亚像素聚光灯折射边框。所有核心仓库地址、线上直连站点与克隆指令均一站式汇总于此。
+          <p className="mt-3 max-w-2xl text-pink-50/85 text-base">
+            移动鼠标感受跨卡片香槟光玉与春樱珠光边框折射。所有核心仓库地址、线上直连站点与克隆指令均一站式汇总于此。
           </p>
         </div>
 
@@ -365,15 +365,15 @@ export const BentoMatrix: React.FC<BentoMatrixProps> = ({ motionPaused }) => {
             </div>
 
             {/* 终端日志视窗 */}
-            <div className="relative z-10 h-36 overflow-y-auto rounded-xl border border-slate-800/90 bg-[#03060d] p-3 font-mono text-[11px] space-y-1.5">
+            <div className="relative z-10 h-36 overflow-y-auto rounded-2xl border border-pink-200/20 bg-[#171329]/75 p-3 font-mono text-[11px] space-y-1.5">
               {logs.length === 0 ? (
-                <div className="text-slate-500">终端已清屏，点击上方快捷指令或直接输入命令回车…</div>
+                <div className="text-pink-100/55">手札已清空，点击上方快捷指令或直接输入命令回车…</div>
               ) : (
                 logs.map((line) => (
                   <div
                     key={line.id}
                     className={
-                      line.type === 'cmd' ? 'text-emerald-300 font-semibold' : 'text-slate-300'
+                      line.type === 'cmd' ? 'text-amber-200 font-semibold' : 'text-pink-50/90'
                     }
                   >
                     {line.text}
@@ -388,20 +388,20 @@ export const BentoMatrix: React.FC<BentoMatrixProps> = ({ motionPaused }) => {
                 e.preventDefault();
                 executeTerminalCommand(cmdInput);
               }}
-              className="relative z-10 flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-950/90 px-3 py-1.5 font-mono text-xs"
+              className="clannad-silk-subcard relative z-10 flex items-center gap-2 rounded-xl px-3 py-1.5 font-mono text-xs"
             >
-              <span className="text-emerald-400 select-none">$</span>
+              <span className="text-pink-300 select-none">✿</span>
               <input
                 type="text"
                 value={cmdInput}
                 onChange={(e) => setCmdInput(e.target.value)}
                 placeholder="输入 help 或点击上方胶囊执行..."
                 aria-label="极客终端命令输入"
-                className="w-full bg-transparent text-slate-100 placeholder-slate-500 focus:outline-none"
+                className="w-full bg-transparent text-white placeholder-pink-100/45 focus:outline-none"
               />
               <button
                 type="submit"
-                className="rounded-md bg-emerald-500/20 px-2 py-0.5 text-[11px] text-emerald-300 hover:bg-emerald-500/30 cursor-pointer"
+                className="shrink-0 whitespace-nowrap rounded-lg bg-pink-300/25 border border-pink-200/35 px-2.5 py-0.5 text-[11px] text-pink-100 hover:bg-pink-300/35 cursor-pointer"
               >
                 执行
               </button>

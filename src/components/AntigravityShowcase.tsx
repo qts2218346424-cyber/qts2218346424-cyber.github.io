@@ -14,6 +14,7 @@ import {
   Volume2,
 } from 'lucide-react';
 import { ANTIGRAVITY_SKINS, AUTHOR_PROFILE, AntigravitySkinPreset } from '../data/siteData';
+import { SakuraBlossomIcon, SakuraCornerFiligree } from './ClannadMotifs';
 
 export const AntigravityShowcase: React.FC = () => {
   const defaultClannadSkin =
@@ -75,13 +76,13 @@ export const AntigravityShowcase: React.FC = () => {
         {/* 章节头部 */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-pink-400/30 bg-pink-500/10 px-3.5 py-1 text-xs font-semibold text-pink-300 mb-4">
-              <Sparkles className="h-3.5 w-3.5" />
+            <div className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-medium tracking-wide text-pink-100 mb-4">
+              <SakuraBlossomIcon className="h-3.5 w-3.5" />
               <span>重点旗舰项目 02 · Tauri v2 + Rust 原生反重力汉化与美学控制中心</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+            <h2 className="font-clannad-serif text-3xl sm:text-5xl font-bold tracking-wider text-white">
               <span className="text-antigravity-gradient">Antigravity Studio</span>
-              <span className="text-slate-200"> · 反重力全能汉化引擎</span>
+              <span className="text-pink-50"> · 反重力全能汉化引擎</span>
             </h2>
             <p className="mt-4 max-w-2xl text-slate-300 text-base leading-relaxed">
               彻底告别早期零散批处理与破坏性脚本。以高性能 <strong className="text-white">Rust 原生桌面内核</strong> 统一集成「<strong className="text-pink-300">全量双层无损汉化</strong>」、「<strong className="text-amber-200">10 款高定光学材质包</strong>」、「<strong className="text-emerald-300">7 角色动漫语音独立桌面伴侣</strong>」与「多账号配额反代网关」。
@@ -115,7 +116,8 @@ export const AntigravityShowcase: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-stretch">
           {/* 左侧 5 列：Color DNA 光学控制台 + 汉化注入开关 */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-5">
-            <div className="clannad-crystal-panel rounded-3xl p-5 sm:p-6">
+            <div className="clannad-crystal-panel rounded-3xl p-5 sm:p-6 overflow-hidden">
+              <SakuraCornerFiligree position="top-right" />
               {/* 双层无损汉化实时对比开关 */}
               <div className="rounded-xl border border-pink-400/30 bg-pink-500/8 p-4 mb-5">
                 <div className="flex items-center justify-between gap-3">
@@ -172,10 +174,10 @@ export const AntigravityShowcase: React.FC = () => {
                         key={skin.id}
                         type="button"
                         onClick={() => handleSelectSkin(skin)}
-                        className={`w-full text-left rounded-xl border p-3 transition-all cursor-pointer flex items-center justify-between gap-3 ${
+                        className={`w-full text-left rounded-2xl border p-3 transition-all cursor-pointer flex items-center justify-between gap-3 ${
                           active
-                            ? 'border-pink-400/65 bg-white/8 shadow-[0_0_24px_rgba(244,114,182,0.16)]'
-                            : 'border-slate-800/80 bg-slate-950/60 hover:border-slate-700'
+                            ? 'border-pink-200/65 bg-pink-300/18 shadow-[0_0_24px_rgba(249,168,212,0.22)]'
+                            : 'clannad-silk-subcard hover:border-pink-200/40'
                         }`}
                       >
                         <div className="flex items-center gap-3 min-w-0">
