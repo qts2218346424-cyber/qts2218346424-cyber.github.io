@@ -76,6 +76,26 @@ export interface DangoMember {
 
 export const CLANNAD_TRACKS: ClannadTrack[] = [
   {
+    id: 'nagisa-slope',
+    title: '渚 · 光坂坡道的初遇',
+    jpTitle: '渚 ~ 坂の下の別れ (原声钢琴版)',
+    artist: '麻枝准 · Key Original Soundtrack',
+    durationHint: '01:51',
+    src: './clannad/bgm/nagisa-slope.mp3',
+    coverSrc: './clannad/gallery/scene-sakura.webp',
+    moodTag: '春樱悸动 · 命运起点',
+    accent: '#fb7185',
+    dangoColor: '#fda4af',
+    description:
+      '一切故事开始的地方。灰暗的世界在那个仰头轻声自语的少女面前瞬间染上绚烂春樱色彩：「我们一起开始攀登吧，这长长的坡道。」',
+    lyrics: [
+      { time: 0, jp: '「この学校は、好きですか？」', zh: '「你喜欢这所学校吗？我非常、非常喜欢这里。」' },
+      { time: 26, jp: '桜並木の坂道で 止まっていた時間が動き出す', zh: '在洒满花瓣的樱花坡道下，原本停滞灰暗的时间悄然染上色彩' },
+      { time: 58, jp: 'たとえ何度やり直しても 君に声をかける', zh: '哪怕时光重来千万次，我依然毫不犹豫地在坡道上喊出你的名字' },
+      { time: 86, jp: '行こう、この長い長い坂道を一緒に', zh: '走吧，让我们手牵着手，一起攀登这长长的樱花坡道' },
+    ],
+  },
+  {
     id: 'dango-family',
     title: '团子大家族',
     jpTitle: 'だんご大家族 (茶太 原唱完整版)',
@@ -98,7 +118,7 @@ export const CLANNAD_TRACKS: ClannadTrack[] = [
       { time: 126, jp: '年寄りだんごは 目を細めてる', zh: '年迈的长老团子，总是慈祥地眯起眼睛守望着大家' },
       { time: 158, jp: 'なかよしだんご 手をつなぎ 大きなまるい輪になるよ', zh: '友爱的团子们手牵着手，围成一个大大的温暖圆圈' },
       { time: 196, jp: '町をつくり だんご星の上 みんなで笑いあうよ', zh: '在团子星球上建起小镇，大家相视欢笑永不分离' },
-      { time: 232, jp: '♪ ラララ… いつまでも一緒だよ ♪', zh: '愿这份微小却滚烫的幸福，陪伴屏幕前的你度过每个日夜 ✨' },
+      { time: 232, jp: '♪ ラララ… いつまでも一緒だよ ♪', zh: '愿这份微小却滚烫的幸福，陪伴屏幕前的你度过每个日夜' },
     ],
   },
   {
@@ -122,26 +142,6 @@ export const CLANNAD_TRACKS: ClannadTrack[] = [
       { time: 124, jp: '季節は巡り 春の桜が舞い降りる', zh: '四季轮回，坡道上的春樱再次漫天绽放' },
       { time: 170, jp: 'いつも いつまでも そばにいるよ', zh: '从今往后无论何时，爸爸妈妈都会一直陪在你身边' },
       { time: 220, jp: '小さなてのひら あたたかい奇跡', zh: '小小的手心里，盛满了这座小镇全部的温柔与奇迹' },
-    ],
-  },
-  {
-    id: 'nagisa-slope',
-    title: '渚 · 光坂坡道的初遇',
-    jpTitle: '渚 ~ 坂の下の別れ (原声钢琴版)',
-    artist: '麻枝准 · Key Original Soundtrack',
-    durationHint: '01:51',
-    src: './clannad/bgm/nagisa-slope.mp3',
-    coverSrc: './clannad/gallery/scene-sakura.webp',
-    moodTag: '春樱悸动 · 命运起点',
-    accent: '#fb7185',
-    dangoColor: '#fda4af',
-    description:
-      '一切故事开始的地方。灰暗的世界在那个仰头轻声自语的少女面前瞬间染上绚烂春樱色彩：「我们一起开始攀登吧，这长长的坡道。」',
-    lyrics: [
-      { time: 0, jp: '「この学校は、好きですか？」', zh: '「你喜欢这所学校吗？我非常、非常喜欢这里。」' },
-      { time: 26, jp: '桜並木の坂道で 止まっていた時間が動き出す', zh: '在洒满花瓣的樱花坡道下，原本停滞灰暗的时间悄然染上色彩' },
-      { time: 58, jp: 'たとえ何度やり直しても 君に声をかける', zh: '哪怕时光重来千万次，我依然毫不犹豫地在坡道上喊出你的名字' },
-      { time: 86, jp: '行こう、この長い長い坂道を一緒に', zh: '走吧，让我们手牵着手，一起攀登这长长的樱花坡道 🌸' },
     ],
   },
   {

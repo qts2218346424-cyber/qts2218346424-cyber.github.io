@@ -209,13 +209,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <button
                   type="button"
                   onClick={() => {
-                    onPlayClannadTrack('dango-family');
+                    onPlayClannadTrack('nagisa-slope');
                     document.getElementById('clannad')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="clannad-pill-btn inline-flex items-center gap-2 rounded-full px-4 py-3 text-xs sm:text-sm font-semibold tracking-wide text-amber-100 cursor-pointer"
                 >
                   <Music className="h-3.5 w-3.5 text-amber-200" />
-                  <span>奏响《团子大家族》· 纪念馆</span>
+                  <span>奏响《渚 · 光坂坡道》· 纪念馆</span>
                 </button>
               </div>
 
