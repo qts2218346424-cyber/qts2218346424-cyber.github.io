@@ -346,3 +346,150 @@ dialog.cyber-dialog::backdrop {
     transition-duration: 0.1s;
   }
 }
+
+/* 自适应单树导航栏（基于实测宽度切换内联态与 Top-Layer Popover 折叠态） */
+.site-header-shell.is-measuring,
+.site-header-shell.is-measuring * {
+  transition: none !important;
+}
+
+.site-header-shell.is-measuring .site-header-row {
+  justify-content: flex-start !important;
+  gap: 1.5rem !important;
+}
+
+.site-header-row > * {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.site-header-shell .site-brand {
+  order: 1;
+}
+
+.site-header-shell .site-actions {
+  order: 2;
+  margin-inline-start: auto;
+}
+
+.site-header-shell .site-nav {
+  order: 3;
+}
+
+.site-header-shell.is-wide .site-nav {
+  order: 2;
+}
+
+.site-header-shell.is-wide .site-actions {
+  order: 3;
+  margin-inline-start: 0;
+}
+
+.site-header-shell .nav-menu-trigger {
+  anchor-name: --nav-menu-trigger;
+}
+
+.site-header-shell .site-nav-list {
+  position: fixed;
+  inset: auto;
+  inset-block-start: 4.5rem;
+  inset-block-start: anchor(--nav-menu-trigger bottom);
+  inset-inline-end: 1rem;
+  inline-size: min(84dvw, 20rem);
+  max-inline-size: calc(100dvw - 2rem);
+  block-size: fit-content;
+  max-block-size: calc(100dvh - 5.5rem);
+  margin: 0;
+  margin-block-start: 0.55rem;
+  padding: 0.65rem;
+  list-style: none;
+  overflow: auto;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 228, 240, 0.32);
+  background: linear-gradient(160deg, rgba(26, 21, 42, 0.94), rgba(34, 23, 48, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 248, 252, 0.3),
+    0 24px 56px -12px rgba(8, 6, 20, 0.78);
+  backdrop-filter: blur(24px) saturate(165%);
+  -webkit-backdrop-filter: blur(24px) saturate(165%);
+  z-index: 60;
+  opacity: 0;
+  translate: 0 -6px;
+  transition-property: opacity, translate, display, overlay;
+  transition-duration: 0.22s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-behavior: allow-discrete;
+}
+
+.site-header-shell .site-nav-list:not([popover]):not(.is-manual-open) {
+  display: none;
+}
+
+.site-header-shell .site-nav-list:is(:popover-open, .\:popover-open, .is-manual-open) {
+  display: grid;
+  gap: 0.25rem;
+  opacity: 1;
+  translate: 0 0;
+
+  @starting-style {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
+
+/* 宽屏实测放得下时：隐藏菜单按钮，同一列表直接变为单行内联导航 */
+.site-header-shell.is-wide .nav-menu-trigger {
+  display: none;
+}
+
+.site-header-shell.is-wide .site-nav-list {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  inline-size: auto;
+  max-inline-size: none;
+  block-size: auto;
+  max-block-size: none;
+  overflow: visible;
+  margin: 0;
+  padding: 0.2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 228, 240, 0.14);
+  background: rgba(15, 12, 28, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  opacity: 1;
+  translate: none;
+  transition: none;
+}
+
+.site-header-shell.is-wide .site-nav-list::backdrop {
+  display: none;
+}
+
+.site-header-shell.is-wide .site-nav-popover-header {
+  display: none;
+}
+
+.site-header-shell:not(.is-wide) .site-nav-link {
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.site-nav-link[aria-current="page"] {
+  background: linear-gradient(90deg, rgba(249, 168, 212, 0.28), rgba(253, 230, 138, 0.22), rgba(249, 168, 212, 0.28));
+  color: #ffffff;
+  border-color: rgba(251, 207, 232, 0.52);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 0 16px rgba(249, 168, 212, 0.24);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header-shell .site-nav-list {
+    transition-duration: 0.01s;
+  }
+}
