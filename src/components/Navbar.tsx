@@ -54,6 +54,9 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const shellRef = useRef<HTMLDivElement | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
+  const brandRef = useRef<HTMLAnchorElement | null>(null);
+  const navRef = useRef<HTMLElement | null>(null);
+  const actionsRef = useRef<HTMLDivElement | null>(null);
   const menuListRef = useRef<HTMLUListElement | null>(null);
   const isWideRef = useRef<boolean>(false);
   const lastCollapsedWidthRef = useRef<number>(0);
@@ -68,10 +71,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     (force = false) => {
       const shellEl = shellRef.current;
       const rowEl = rowRef.current;
+      const brandEl = brandRef.current;
+      const navEl = navRef.current;
+      const actionsEl = actionsRef.current;
       const menuEl = menuListRef.current;
-      if (!shellEl || !rowEl || !menuEl) return;
+      if (!shellEl || !rowEl || !brandEl || !actionsEl || !menuEl) return;
 
-      if (scenicMode) {
+      if (scenicMode || !navEl) {
         shellEl.classList.remove('is-wide');
         isWideRef.current = false;
         if (supportsNativePopover) {
@@ -80,9 +86,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         return;
       }
 
-      const currentWidth = rowEl.clientWidth;
-      if (!force && !isWideRef.current && currentWidth <= lastCollapsedWidthRef.current) {
-        lastCollapsedWidthRef.current = currentWidth;
+      const availableWidth = rowEl.clientWidth;
+      if (!force && !isWideRef.current && availableWidth <= lastCollapsedWidthRef.current) {
+        lastCollapsedWidthRef.current = availableWidth;
         return;
       }
 
@@ -95,7 +101,10 @@ export const Navbar: React.FC<NavbarProps> = ({
         menuEl.removeAttribute('popover');
       }
 
-      const fits = rowEl.scrollWidth <= rowEl.clientWidth;
+      // 精确累加左、中、右三段真实像素宽度并预留 44px 安全呼吸间距，确保最右侧 GitHub 按钮绝不被挤压或裁切
+      const requiredWidth =
+        brandEl.offsetWidth + navEl.offsetWidth + actionsEl.offsetWidth + 44;
+      const fits = requiredWidth <= availableWidth;
 
       if (fits) {
         isWideRef.current = true;
@@ -106,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       } else {
         shellEl.classList.remove('is-wide');
         isWideRef.current = false;
-        lastCollapsedWidthRef.current = currentWidth;
+        lastCollapsedWidthRef.current = availableWidth;
         if (supportsNativePopover) {
           menuEl.setAttribute('popover', 'auto');
           if (wasOpen) {
@@ -131,15 +140,25 @@ export const Navbar: React.FC<NavbarProps> = ({
 
     const rowEl = rowRef.current;
     const menuEl = menuListRef.current;
-    if (!rowEl || typeof ResizeObserver === 'undefined') return;
+    const actionsEl = actionsRef.current;
 
-    const ro = new ResizeObserver(() => {
-      syncLayout(false);
-    });
-    ro.observe(rowEl);
-    if (menuEl) {
-      ro.observe(menuEl);
+    const ro =
+      typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(() => {
+            syncLayout(false);
+          })
+        : null;
+
+    if (ro && rowEl) {
+      ro.observe(rowEl);
+      if (menuEl) ro.observe(menuEl);
+      if (actionsEl) ro.observe(actionsEl);
     }
+
+    // 监听浏览器缩放 (Ctrl + 滚轮 / 系统 DPI 切换) 强制重算宽度
+    const handleForceResize = () => syncLayout(true);
+    window.addEventListener('resize', handleForceResize, { passive: true });
+    window.visualViewport?.addEventListener('resize', handleForceResize, { passive: true });
 
     const handleToggle = (e: Event) => {
       const te = e as ToggleEvent;
@@ -150,7 +169,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     menuEl?.addEventListener('toggle', handleToggle);
 
     return () => {
-      ro.disconnect();
+      ro?.disconnect();
+      window.removeEventListener('resize', handleForceResize);
+      window.visualViewport?.removeEventListener('resize', handleForceResize);
       menuEl?.removeEventListener('toggle', handleToggle);
     };
   }, [syncLayout]);
@@ -213,10 +234,10 @@ export const Navbar: React.FC<NavbarProps> = ({
       <header className="fixed top-3.5 inset-x-0 z-50 px-3 sm:px-6 pointer-events-none">
         <div
           ref={shellRef}
-          className={`site-header-shell relative mx-auto max-w-[84rem] pointer-events-auto transition-all duration-300 rounded-full border ${
+          className={`site-header-shell relative mx-auto max-w-[86rem] pointer-events-auto transition-all duration-300 rounded-full border ${
             scrolled
-              ? 'bg-[#19162b]/76 border-pink-200/35 shadow-[0_20px_50px_-15px_rgba(10,8,24,0.72),inset_0_1px_0_rgba(255,248,252,0.35)] backdrop-blur-2xl py-2 px-4 sm:px-5'
-              : 'bg-[#1b172e]/58 border-pink-100/28 shadow-[0_14px_38px_-12px_rgba(10,8,24,0.52),inset_0_1px_0_rgba(255,248,252,0.3)] backdrop-blur-2xl py-2 px-4 sm:px-5'
+              ? 'bg-[#19162b]/76 border-pink-200/35 shadow-[0_20px_50px_-15px_rgba(10,8,24,0.72),inset_0_1px_0_rgba(255,248,252,0.35)] backdrop-blur-2xl py-2 px-3.5 sm:px-5'
+              : 'bg-[#1b172e]/58 border-pink-100/28 shadow-[0_14px_38px_-12px_rgba(10,8,24,0.52),inset_0_1px_0_rgba(255,248,252,0.3)] backdrop-blur-2xl py-2 px-3.5 sm:px-5'
           }`}
         >
           {/* 顶栏上沿香槟樱金微距流光丝线 */}
@@ -225,11 +246,12 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="pointer-events-none absolute inset-x-14 top-0 h-[1px] bg-gradient-to-r from-transparent via-amber-200/65 to-transparent"
           />
 
-          <div ref={rowRef} className="site-header-row flex items-center justify-between gap-3">
-            {/* 左侧：高定微立体粉团子 × 主理人单行修长铭牌（超宽屏 2xl 再浮现副标题，大幅释放横向呼吸空间） */}
+          <div ref={rowRef} className="site-header-row flex items-center justify-between gap-2 sm:gap-3">
+            {/* 左侧：高定微立体粉团子 × 主理人铭牌 */}
             <a
+              ref={brandRef}
               href="#hero"
-              className="site-brand group flex items-center gap-2.5 rounded-full pr-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
+              className="site-brand group flex items-center gap-2 sm:gap-2.5 rounded-full pr-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
             >
               <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-200 via-amber-200 to-sky-200 p-[1px] shadow-[0_0_18px_rgba(249,168,212,0.45)]">
                 <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-b from-[#2a203b] to-[#1a1528]">
@@ -256,9 +278,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </a>
 
-            {/* 中部：单一语义导航树（宽屏自动内联单行舒展排布，空间不足自动降级为原生 Top-Layer 弹出面板） */}
+            {/* 中部：单一语义导航树（空间宽裕时内联展开，浏览器放大缩放空间不足时提前收拢进“导览”弹出面板） */}
             {!scenicMode && (
-              <nav aria-label="主导航" className="site-nav flex items-center">
+              <nav ref={navRef} aria-label="主导航" className="site-nav flex items-center">
                 <button
                   type="button"
                   {...(supportsNativePopover
@@ -298,7 +320,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           href={`#${item.id}`}
                           aria-current={isActive ? 'page' : undefined}
                           onClick={closeMenuAfterNavigate}
-                          className="site-nav-link flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium tracking-wide text-pink-50/85 hover:text-white hover:bg-white/10 border border-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
+                          className="site-nav-link flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide text-pink-50/85 hover:text-white hover:bg-white/10 border border-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
                         >
                           {isActive && (
                             <SakuraBlossomIcon aria-hidden="true" className="h-3 w-3 shrink-0" />
@@ -312,17 +334,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               </nav>
             )}
 
-            {/* 右侧：降噪精炼工具舱（特色画境胶囊 + Ctrl K 快捷钮 + 四枚灵动圆章图标，彻底消除文字堆砌） */}
-            <div className="site-actions flex items-center gap-1.5">
+            {/* 右侧：全缩放比例自适应工具舱（保留完整 B站 / GitHub 胶囊且窄屏自动缩为圆章，永不切边） */}
+            <div ref={actionsRef} className="site-actions flex items-center gap-1.5">
               {/* 画境切换胶囊 */}
               <button
                 type="button"
                 onClick={cycleNextWallpaper}
-                className="clannad-pill-btn flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-pink-50 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
+                className="clannad-pill-btn flex items-center justify-center gap-1.5 rounded-full h-8 w-8 md:w-auto md:px-3 text-xs font-medium text-pink-50 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
                 title={`当前画境：${currentWallpaperObj.label}（点击切换《CLANNAD》原作背景）`}
               >
                 <SakuraBlossomIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
-                <span className="hidden sm:inline">{currentWallpaperObj.shortLabel}</span>
+                <span className="hidden md:inline">{currentWallpaperObj.shortLabel}</span>
               </button>
 
               {/* 光玉快速指令钮 (Ctrl K) */}
@@ -331,7 +353,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={onOpenPalette}
                 aria-label="打开全局指令与点歌面板 (Ctrl + K)"
                 title="唤起光玉全局指令与原声点歌台 (Ctrl + K)"
-                className="clannad-pill-btn flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium text-pink-50 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
+                className="clannad-pill-btn flex items-center justify-center gap-1.5 rounded-full h-8 w-8 md:w-auto md:px-2.5 text-xs font-medium text-pink-50 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
               >
                 <HikariOrbIcon aria-hidden="true" className="h-3.5 w-3.5 shrink-0" />
                 <kbd className="hidden md:inline-block rounded-md bg-[#231b34]/85 px-1.5 py-0.5 font-mono text-[10px] leading-none text-amber-100/95 border border-pink-200/25">
@@ -339,7 +361,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </kbd>
               </button>
 
-              {/* 纯净赏景模式钮（常规态为紧凑圆章图标，赏景态展开为醒目“恢复界面”胶囊） */}
+              {/* 纯净赏景模式钮 */}
               <button
                 type="button"
                 onClick={onToggleScenicMode}
@@ -347,7 +369,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 title={scenicMode ? '恢复页面卡片' : '纯净赏景：隐藏文字卡片，全屏欣赏 CLANNAD 原作风景与配乐'}
                 className={`flex items-center justify-center gap-1.5 rounded-full text-xs font-medium cursor-pointer transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 ${
                   scenicMode
-                    ? 'border border-amber-200/70 bg-amber-300/30 text-amber-50 px-3 py-1.5 shadow-[0_0_18px_rgba(253,230,138,0.45)]'
+                    ? 'border border-amber-200/70 bg-amber-300/30 text-amber-50 h-8 px-3 shadow-[0_0_18px_rgba(253,230,138,0.45)]'
                     : 'clannad-pill-btn h-8 w-8 text-pink-50/90'
                 }`}
               >
@@ -376,28 +398,30 @@ export const Navbar: React.FC<NavbarProps> = ({
                 )}
               </button>
 
-              {/* 哔哩哔哩圆章入口 */}
+              {/* 哔哩哔哩入口（桌面完整显示“B站”，大幅放大缩放窄视口下自动变为完整圆章，绝不切边） */}
               <a
                 href={AUTHOR_PROFILE.bilibiliUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="前往哔哩哔哩主页"
                 title={`前往哔哩哔哩主页 (UID: ${AUTHOR_PROFILE.bilibiliUid})`}
-                className="clannad-pill-btn hidden sm:flex h-8 w-8 items-center justify-center rounded-full text-pink-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
+                className="clannad-pill-btn hidden sm:flex h-8 w-8 lg:w-auto lg:px-2.5 items-center justify-center gap-1.5 rounded-full text-xs font-medium text-pink-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
               >
-                <BilibiliIcon aria-hidden="true" className="h-3.5 w-3.5 text-pink-300" />
+                <BilibiliIcon aria-hidden="true" className="h-3.5 w-3.5 text-pink-300 shrink-0" />
+                <span className="hidden lg:inline">B站</span>
               </a>
 
-              {/* GitHub 圆章入口 */}
+              {/* GitHub 入口（桌面完整显示“GitHub”，放大缩放空间变窄时先收起中部导航、再平滑缩为完整圆章，永不显示残缺半截） */}
               <a
                 href={AUTHOR_PROFILE.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="访问 GitHub 开源主页"
                 title="访问 GitHub 开源主页"
-                className="clannad-pill-btn hidden sm:flex h-8 w-8 items-center justify-center rounded-full text-amber-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
+                className="clannad-pill-btn hidden sm:flex h-8 w-8 lg:w-auto lg:px-2.5 items-center justify-center gap-1.5 rounded-full text-xs font-medium text-pink-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
               >
-                <Github aria-hidden="true" className="h-3.5 w-3.5 text-amber-100" />
+                <Github aria-hidden="true" className="h-3.5 w-3.5 text-amber-100 shrink-0" />
+                <span className="hidden lg:inline">GitHub</span>
               </a>
             </div>
           </div>
