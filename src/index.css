@@ -1,0 +1,306 @@
+@import "tailwindcss";
+
+/* Houdini 自定义属性：驱动 360° 樱花光玉旋转流光边框 */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --in-oklab: ;
+  --in-oklch: ;
+  color-scheme: dark;
+}
+
+@supports (background: linear-gradient(in oklab, white, black)) {
+  :root {
+    --in-oklab: in oklab;
+    --in-oklch: in oklch;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #121629;
+  font-family: "Inter", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei UI", system-ui, -apple-system, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 温润樱花粉金极窄滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(18, 22, 41, 0.75);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(244, 114, 182, 0.45);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 191, 36, 0.85);
+}
+
+/* 零主线程开销：原生 CSS Scroll-Driven 春樱光玉阅读进度光轨 */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 90;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg var(--in-oklch), #f9a8d4, #fbbf24, #7dd3fc, #f472b6);
+  box-shadow: 0 0 16px rgba(244, 114, 182, 0.85);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    @keyframes grow-scroll-progress {
+      from {
+        transform: scaleX(0);
+      }
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    #scroll-progress-bar {
+      animation: grow-scroll-progress auto linear;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+/* CLANNAD 春樱 × 晴空 × 奇迹光玉文字渐变（采用 OKLCH 高饱和插值） */
+.text-aurora-gradient {
+  background: linear-gradient(120deg var(--in-oklch), #fff1f6 8%, #fbcfe8 36%, #fde68a 68%, #bae6fd 98%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-coreforge-gradient {
+  background: linear-gradient(120deg var(--in-oklch), #bae6fd 0%, #7dd3fc 48%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-antigravity-gradient {
+  background: linear-gradient(120deg var(--in-oklch), #fbcfe8 0%, #f472b6 48%, #fde047 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 通用 CLANNAD 液态水晶玻璃面板（高透光折射背后高清动漫壁纸） */
+.clannad-crystal-panel {
+  background: linear-gradient(
+    155deg var(--in-oklab),
+    rgba(22, 24, 48, 0.56),
+    rgba(30, 19, 42, 0.64)
+  );
+  border: 1px solid rgba(255, 228, 240, 0.24);
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    0 24px 60px -15px rgba(8, 10, 26, 0.58);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+}
+
+/* 樱花光玉流光主按钮 */
+@keyframes spin-beam {
+  to {
+    --beam-angle: 360deg;
+  }
+}
+
+.conic-beam-btn {
+  position: relative;
+  isolation: isolate;
+  border-radius: 9999px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--beam-angle),
+    rgba(249, 168, 212, 0.25) 0%,
+    rgba(244, 114, 182, 0.98) 20%,
+    rgba(251, 191, 36, 0.98) 38%,
+    rgba(125, 211, 252, 0.85) 54%,
+    rgba(255, 255, 255, 0.18) 100%
+  );
+  box-shadow:
+    0 0 32px -4px rgba(244, 114, 182, 0.52),
+    0 12px 30px -10px rgba(10, 8, 24, 0.65);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .conic-beam-btn[data-motion="active"] {
+    animation: spin-beam 4.5s linear infinite;
+  }
+}
+
+/* VisionOS × 京都动画风 鼠标感应珠光水晶卡片 */
+.spotlight-card {
+  position: relative;
+  border-radius: 1.35rem;
+  background: linear-gradient(
+    160deg var(--in-oklab),
+    rgba(24, 26, 52, 0.55),
+    rgba(32, 20, 44, 0.62)
+  );
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 240, 248, 0.24),
+    0 22px 52px -16px rgba(9, 11, 28, 0.56);
+  backdrop-filter: blur(22px) saturate(170%);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  overflow: hidden;
+}
+
+/* 1px 感应樱花珠光边框折射层 */
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    520px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    var(--spotlight-color, rgba(249, 168, 212, 0.82)),
+    rgba(255, 228, 242, 0.24) 42%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 表面柔和暖粉与琥珀漫反射层 */
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    640px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    var(--spotlight-surface, rgba(249, 168, 212, 0.14)),
+    transparent 46%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 双轨无缝跑马灯 */
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-track-left,
+.marquee-track-right {
+  display: flex;
+  width: max-content;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track-left[data-paused="false"] {
+    animation: marquee-left 34s linear infinite;
+  }
+  .marquee-track-right[data-paused="false"] {
+    animation: marquee-right 38s linear infinite;
+  }
+  .marquee-track-left:hover,
+  .marquee-track-right:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* 原生 Top-Layer <dialog> 模态框丝滑入场与离场过渡 */
+dialog.cyber-dialog {
+  opacity: 0;
+  margin: auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+  max-width: min(94vw, 960px);
+  max-height: 90vh;
+  color: inherit;
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.26s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-behavior: allow-discrete;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  dialog.cyber-dialog {
+    transform: scale(0.94) translateY(10px);
+  }
+}
+
+dialog.cyber-dialog::backdrop {
+  background-color: rgb(14 12 28 / 0);
+  backdrop-filter: blur(0px);
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 0.26s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+:is(dialog.cyber-dialog[open]):where(:not([data-closing])) {
+  opacity: 1;
+
+  @starting-style {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transform: scale(1) translateY(0);
+
+    @starting-style {
+      transform: scale(0.94) translateY(10px);
+    }
+  }
+}
+
+:is(dialog.cyber-dialog[open]):where(:not([data-closing]))::backdrop {
+  background-color: rgb(14 12 28 / 0.68);
+  backdrop-filter: blur(14px);
+
+  @starting-style {
+    background-color: rgb(14 12 28 / 0);
+    backdrop-filter: blur(0px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.cyber-dialog,
+  dialog.cyber-dialog::backdrop {
+    transition-duration: 0.1s;
+  }
+}
