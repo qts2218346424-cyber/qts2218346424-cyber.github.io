@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   Eye,
   EyeOff,
@@ -49,132 +49,111 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [activeId, setActiveId] = useState<string>('hero');
   const [scrolled, setScrolled] = useState<boolean>(false);
-  const [manualOpen, setManualOpen] = useState<boolean>(false);
-  const [popoverOpen, setPopoverOpen] = useState<boolean>(false);
+  const [isWide, setIsWide] = useState<boolean>(true);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
-  const shellRef = useRef<HTMLDivElement | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
   const brandRef = useRef<HTMLAnchorElement | null>(null);
-  const navRef = useRef<HTMLElement | null>(null);
-  const actionsRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
   const menuListRef = useRef<HTMLUListElement | null>(null);
-  const isWideRef = useRef<boolean>(false);
-  const lastCollapsedWidthRef = useRef<number>(0);
-  const manualOpenRef = useRef<boolean>(false);
+  const actionsRef = useRef<HTMLDivElement | null>(null);
+  const navInlineWidthRef = useRef<number>(540);
+  const isWideStateRef = useRef<boolean>(true);
 
-  manualOpenRef.current = manualOpen;
+  isWideStateRef.current = isWide;
 
-  const supportsNativePopover =
-    typeof HTMLElement !== 'undefined' && Object.hasOwn(HTMLElement.prototype, 'popover');
+  const measureAndSyncLayout = useCallback(() => {
+    const rowEl = rowRef.current;
+    const brandEl = brandRef.current;
+    const actionsEl = actionsRef.current;
+    const menuEl = menuListRef.current;
+    if (!rowEl || !brandEl || !actionsEl) return;
 
-  const syncLayout = useCallback(
-    (force = false) => {
-      const shellEl = shellRef.current;
-      const rowEl = rowRef.current;
-      const brandEl = brandRef.current;
-      const navEl = navRef.current;
-      const actionsEl = actionsRef.current;
-      const menuEl = menuListRef.current;
-      if (!shellEl || !rowEl || !brandEl || !actionsEl || !menuEl) return;
+    if (scenicMode) {
+      setIsWide(false);
+      setMenuOpen(false);
+      return;
+    }
 
-      if (scenicMode || !navEl) {
-        shellEl.classList.remove('is-wide');
-        isWideRef.current = false;
-        if (supportsNativePopover) {
-          menuEl.removeAttribute('popover');
-        }
-        return;
+    // 当前处于内联展开态时，实时刷新 7 个导航胶囊的真实总像素宽度
+    if (isWideStateRef.current && menuEl && menuEl.offsetWidth > 0) {
+      navInlineWidthRef.current = menuEl.offsetWidth;
+    }
+
+    const availableWidth = rowEl.clientWidth;
+    const requiredWidth =
+      brandEl.offsetWidth + navInlineWidthRef.current + actionsEl.offsetWidth + 44;
+    const nextIsWide = requiredWidth <= availableWidth;
+
+    setIsWide((prev) => {
+      if (prev !== nextIsWide && nextIsWide) {
+        setMenuOpen(false);
       }
+      return nextIsWide;
+    });
+  }, [scenicMode]);
 
-      const availableWidth = rowEl.clientWidth;
-      if (!force && !isWideRef.current && availableWidth <= lastCollapsedWidthRef.current) {
-        lastCollapsedWidthRef.current = availableWidth;
-        return;
-      }
-
-      const wasOpen = supportsNativePopover
-        ? menuEl.matches(':popover-open')
-        : manualOpenRef.current;
-
-      shellEl.classList.add('is-measuring', 'is-wide');
-      if (supportsNativePopover) {
-        menuEl.removeAttribute('popover');
-      }
-
-      // 精确累加左、中、右三段真实像素宽度并预留 44px 安全呼吸间距，确保最右侧 GitHub 按钮绝不被挤压或裁切
-      const requiredWidth =
-        brandEl.offsetWidth + navEl.offsetWidth + actionsEl.offsetWidth + 44;
-      const fits = requiredWidth <= availableWidth;
-
-      if (fits) {
-        isWideRef.current = true;
-        setPopoverOpen(false);
-        if (!supportsNativePopover && manualOpenRef.current) {
-          setManualOpen(false);
-        }
-      } else {
-        shellEl.classList.remove('is-wide');
-        isWideRef.current = false;
-        lastCollapsedWidthRef.current = availableWidth;
-        if (supportsNativePopover) {
-          menuEl.setAttribute('popover', 'auto');
-          if (wasOpen) {
-            try {
-              (menuEl as HTMLElement & { showPopover?: () => void }).showPopover?.();
-            } catch {
-              // 忽略重复唤起异常
-            }
-          }
-        }
-      }
-
-      requestAnimationFrame(() => {
-        shellEl.classList.remove('is-measuring');
-      });
-    },
-    [scenicMode, supportsNativePopover],
-  );
+  // 首帧绘制前同步测量，消除窄屏/高缩放首屏闪烁
+  useLayoutEffect(() => {
+    measureAndSyncLayout();
+  }, [measureAndSyncLayout]);
 
   useEffect(() => {
-    syncLayout(true);
-
     const rowEl = rowRef.current;
-    const menuEl = menuListRef.current;
     const actionsEl = actionsRef.current;
 
     const ro =
       typeof ResizeObserver !== 'undefined'
         ? new ResizeObserver(() => {
-            syncLayout(false);
+            measureAndSyncLayout();
           })
         : null;
 
     if (ro && rowEl) {
       ro.observe(rowEl);
-      if (menuEl) ro.observe(menuEl);
       if (actionsEl) ro.observe(actionsEl);
     }
 
-    // 监听浏览器缩放 (Ctrl + 滚轮 / 系统 DPI 切换) 强制重算宽度
-    const handleForceResize = () => syncLayout(true);
-    window.addEventListener('resize', handleForceResize, { passive: true });
-    window.visualViewport?.addEventListener('resize', handleForceResize, { passive: true });
-
-    const handleToggle = (e: Event) => {
-      const te = e as ToggleEvent;
-      if (typeof te.newState === 'string') {
-        setPopoverOpen(te.newState === 'open');
-      }
-    };
-    menuEl?.addEventListener('toggle', handleToggle);
+    window.addEventListener('resize', measureAndSyncLayout, { passive: true });
+    window.visualViewport?.addEventListener('resize', measureAndSyncLayout, { passive: true });
+    void document.fonts?.ready?.then(() => {
+      measureAndSyncLayout();
+    });
 
     return () => {
       ro?.disconnect();
-      window.removeEventListener('resize', handleForceResize);
-      window.visualViewport?.removeEventListener('resize', handleForceResize);
-      menuEl?.removeEventListener('toggle', handleToggle);
+      window.removeEventListener('resize', measureAndSyncLayout);
+      window.visualViewport?.removeEventListener('resize', measureAndSyncLayout);
     };
-  }, [syncLayout]);
+  }, [measureAndSyncLayout]);
+
+  // 导览下拉面板打开时：点击外部空白区域或按 Esc 键自动轻触关闭
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handlePointerDownOutside = (e: PointerEvent) => {
+      const target = e.target as Node | null;
+      if (!target) return;
+      if (menuListRef.current?.contains(target) || triggerRef.current?.contains(target)) {
+        return;
+      }
+      setMenuOpen(false);
+    };
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('pointerdown', handlePointerDownOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDownOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     const supportsScrollTimeline =
@@ -212,20 +191,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     onChangeWorldTheme(next.id);
   };
 
-  const closeMenuAfterNavigate = () => {
-    if (supportsNativePopover) {
-      const menuEl = menuListRef.current as (HTMLElement & { hidePopover?: () => void }) | null;
-      if (menuEl?.matches(':popover-open')) {
-        menuEl.hidePopover?.();
-      }
-    } else {
-      setManualOpen(false);
-    }
-  };
-
   const currentWallpaperObj =
     WORLD_BACKDROP_OPTIONS.find((o) => o.id === worldTheme) ?? WORLD_BACKDROP_OPTIONS[0];
-  const isMenuOpen = supportsNativePopover ? popoverOpen : manualOpen;
 
   return (
     <>
@@ -233,8 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       <header className="fixed top-3.5 inset-x-0 z-50 px-3 sm:px-6 pointer-events-none">
         <div
-          ref={shellRef}
-          className={`site-header-shell relative mx-auto max-w-[86rem] pointer-events-auto transition-all duration-300 rounded-full border ${
+          className={`site-header-shell ${isWide && !scenicMode ? 'is-wide' : ''} relative mx-auto max-w-[86rem] pointer-events-auto transition-all duration-300 rounded-full border ${
             scrolled
               ? 'bg-[#19162b]/76 border-pink-200/35 shadow-[0_20px_50px_-15px_rgba(10,8,24,0.72),inset_0_1px_0_rgba(255,248,252,0.35)] backdrop-blur-2xl py-2 px-3.5 sm:px-5'
               : 'bg-[#1b172e]/58 border-pink-100/28 shadow-[0_14px_38px_-12px_rgba(10,8,24,0.52),inset_0_1px_0_rgba(255,248,252,0.3)] backdrop-blur-2xl py-2 px-3.5 sm:px-5'
@@ -278,24 +244,22 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             </a>
 
-            {/* 中部：单一语义导航树（空间宽裕时内联展开，浏览器放大缩放空间不足时提前收拢进“导览”弹出面板） */}
+            {/* 中部：单一语义导航树（宽屏内联展开，空间不足时由“导览”按钮一键开关右下方琉璃面板） */}
             {!scenicMode && (
-              <nav ref={navRef} aria-label="主导航" className="site-nav flex items-center">
+              <nav aria-label="主导航" className="site-nav flex items-center">
                 <button
+                  ref={triggerRef}
                   type="button"
-                  {...(supportsNativePopover
-                    ? ({
-                        popovertarget: 'site-nav-menu',
-                        popovertargetaction: 'toggle',
-                      } as React.ButtonHTMLAttributes<HTMLButtonElement>)
-                    : {
-                        onClick: () => setManualOpen((prev) => !prev),
-                      })}
+                  onClick={() => setMenuOpen((prev) => !prev)}
                   aria-controls="site-nav-menu"
-                  aria-expanded={isMenuOpen}
-                  className="nav-menu-trigger clannad-pill-btn flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-pink-50 cursor-pointer"
+                  aria-expanded={menuOpen}
+                  className={`nav-menu-trigger flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium cursor-pointer transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200 ${
+                    menuOpen
+                      ? 'border border-pink-200/65 bg-pink-300/25 text-white shadow-[0_0_16px_rgba(249,168,212,0.35)]'
+                      : 'clannad-pill-btn text-pink-50'
+                  }`}
                 >
-                  {isMenuOpen ? (
+                  {menuOpen ? (
                     <X aria-hidden="true" className="h-3.5 w-3.5" />
                   ) : (
                     <Menu aria-hidden="true" className="h-3.5 w-3.5" />
@@ -306,9 +270,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <ul
                   id="site-nav-menu"
                   ref={menuListRef}
-                  className={`site-nav-list ${!supportsNativePopover && manualOpen ? 'is-manual-open' : ''}`}
+                  className={`site-nav-list ${menuOpen ? 'is-open' : ''}`}
                 >
-                  <li className="site-nav-popover-header px-2.5 py-1 text-[11px] text-pink-200/80 flex items-center justify-between border-b border-pink-200/15 mb-1">
+                  <li className="site-nav-popover-header px-2.5 py-1.5 text-[11px] text-pink-200/85 flex items-center justify-between border-b border-pink-200/15 mb-1">
                     <span>光坂坡道 · 章节导览</span>
                     <DangoTrioCrest />
                   </li>
@@ -319,12 +283,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                         <a
                           href={`#${item.id}`}
                           aria-current={isActive ? 'page' : undefined}
-                          onClick={closeMenuAfterNavigate}
-                          className="site-nav-link flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide text-pink-50/85 hover:text-white hover:bg-white/10 border border-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
+                          onClick={() => setMenuOpen(false)}
+                          className="site-nav-link flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-medium tracking-wide text-pink-50/85 hover:text-white hover:bg-white/12 border border-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-200"
                         >
-                          {isActive && (
-                            <SakuraBlossomIcon aria-hidden="true" className="h-3 w-3 shrink-0" />
-                          )}
+                          <SakuraBlossomIcon
+                            aria-hidden="true"
+                            className={`h-3 w-3 shrink-0 transition-opacity ${
+                              isActive ? 'opacity-100' : isWide ? 'hidden' : 'opacity-50'
+                            }`}
+                          />
                           <span>{item.label}</span>
                         </a>
                       </li>
@@ -334,7 +301,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </nav>
             )}
 
-            {/* 右侧：全缩放比例自适应工具舱（保留完整 B站 / GitHub 胶囊且窄屏自动缩为圆章，永不切边） */}
+            {/* 右侧：全缩放比例自适应工具舱 */}
             <div ref={actionsRef} className="site-actions flex items-center gap-1.5">
               {/* 画境切换胶囊 */}
               <button
@@ -398,7 +365,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 )}
               </button>
 
-              {/* 哔哩哔哩入口（桌面完整显示“B站”，大幅放大缩放窄视口下自动变为完整圆章，绝不切边） */}
+              {/* 哔哩哔哩入口 */}
               <a
                 href={AUTHOR_PROFILE.bilibiliUrl}
                 target="_blank"
@@ -411,7 +378,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span className="hidden lg:inline">B站</span>
               </a>
 
-              {/* GitHub 入口（桌面完整显示“GitHub”，放大缩放空间变窄时先收起中部导航、再平滑缩为完整圆章，永不显示残缺半截） */}
+              {/* GitHub 入口 */}
               <a
                 href={AUTHOR_PROFILE.githubUrl}
                 target="_blank"
