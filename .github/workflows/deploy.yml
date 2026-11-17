@@ -35,7 +35,7 @@ jobs:
           cache: 'pnpm'
 
       - name: 安装项目依赖
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: 构建生产环境静态包
         run: pnpm build

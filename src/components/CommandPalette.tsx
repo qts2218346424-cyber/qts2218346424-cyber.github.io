@@ -222,7 +222,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     <dialog
       ref={dialogRef}
       {...({ closedby: 'any' } as React.DialogHTMLAttributes<HTMLDialogElement>)}
-      aria-label="QTS 极客全局命令面板"
+      aria-label="空の光 全局指令面板"
       className="cyber-dialog w-full max-w-2xl"
     >
       <div

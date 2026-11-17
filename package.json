@@ -1,8 +1,8 @@
 {
-  "name": "qts-cyber-nexus",
+  "name": "sora-no-hikari-blog",
   "private": true,
   "version": "1.0.0",
-  "description": "QTS · 天选 个人全息极客博客站 — CoreForge 研核 & Antigravity Studio 官方导航门户",
+  "description": "空の光 个人造物空间 — CoreForge 研核 & Antigravity Studio 官方导航门户",
   "type": "module",
   "scripts": {
     "dev": "vite --port 5180",

@@ -30,7 +30,7 @@ interface TerminalLine {
 }
 
 const INITIAL_LOGS: TerminalLine[] = [
-  { id: 1, type: 'cmd', text: 'qts@cyber-nexus:~$ status --flagships' },
+  { id: 1, type: 'cmd', text: 'hikari@hikarizaka:~$ status --flagships' },
   {
     id: 2,
     type: 'output',
@@ -105,7 +105,7 @@ export const BentoMatrix: React.FC<BentoMatrixProps> = ({ motionPaused }) => {
 
     setLogs((prev) => [
       ...prev.slice(-7),
-      { id: Date.now(), type: 'cmd', text: `qts@cyber-nexus:~$ ${raw}` },
+      { id: Date.now(), type: 'cmd', text: `hikari@hikarizaka:~$ ${raw}` },
       { id: Date.now() + 1, type: 'output', text: reply },
     ]);
     setCmdInput('');
@@ -333,8 +333,8 @@ export const BentoMatrix: React.FC<BentoMatrixProps> = ({ motionPaused }) => {
           <div className="spotlight-card lg:col-span-5 p-5 flex flex-col justify-between gap-3">
             <div className="relative z-10 flex items-center justify-between border-b border-slate-800 pb-2.5">
               <div className="flex items-center gap-2 text-xs font-bold text-white">
-                <Terminal className="h-4 w-4 text-emerald-400" />
-                <span>QTS Cyber Shell · 交互终端</span>
+                <Terminal className="h-4 w-4 text-amber-200" />
+                <span>空の光 · 光坂星夜手札终端</span>
               </div>
               <span className="font-mono text-[10px] text-emerald-400 flex items-center gap-1">
                 <Cpu className="h-3 w-3" /> interactive

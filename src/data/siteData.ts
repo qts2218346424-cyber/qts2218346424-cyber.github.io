@@ -83,7 +83,7 @@ export interface BlogPost {
 }
 
 export const AUTHOR_PROFILE = {
-  name: 'QTS · 天选',
+  name: '空の光',
   handle: '@qts2218346424-cyber',
   title: '全栈独立架构师 · 桌面内核与智能知识系统造物主',
   githubUrl: 'https://github.com/qts2218346424-cyber',
@@ -415,9 +415,9 @@ export const PROJECTS_DIRECTORY: ProjectDirectoryItem[] = [
     repoUrl: 'https://github.com/qts2218346424-cyber/obsidian-knowledge-viz',
   },
   {
-    id: 'qts-cyber-nexus',
-    name: 'QTS · 天选 全息个人极客门户',
-    codename: 'qts-cyber-blog',
+    id: 'sora-no-hikari-blog',
+    name: '空の光 · 光坂春樱个人造物门户',
+    codename: 'sora-no-hikari',
     flagship: false,
     accentColor: '#34d399',
     summary:
